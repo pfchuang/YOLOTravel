@@ -4,9 +4,15 @@
 ## 開發環境 ##
 Ubuntu 16.04
 
-Python 3.6.3
+Python 3.5.2
 
 PostgreSQL 9.5.12
+
+## 設定虛擬環境 ##
+
+移動至tripcollector檔案目錄下
+
+    virtualenv -p python3 venv
 
 ## 初始化套件 ##
 
