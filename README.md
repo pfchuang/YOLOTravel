@@ -10,7 +10,7 @@ PostgreSQL 9.5.12
 
 ## 設定虛擬環境 ##
 
-移動至tripcollector檔案目錄下
+移動至tripcollector檔案目錄下之後
 
     virtualenv -p python3 venv
 
