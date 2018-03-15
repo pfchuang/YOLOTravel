@@ -6,7 +6,7 @@ Ubuntu 16.04
 
 Python 3.6.3
 
-PostgreSQL 9.6.8
+PostgreSQL 9.5.12
 
 ## 初始化套件 ##
 
