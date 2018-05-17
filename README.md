@@ -1,4 +1,4 @@
-# TripCollector 主程式
+# Trip 主程式
 - - -
 
 ## 開發環境 ##
@@ -8,35 +8,17 @@ Python 3.5.2
 
 PostgreSQL 9.5.12
 
-## 建立虛擬環境 ##
+## 設定虛擬環境 ##
 
-移動至專案目錄下後
+移動至trip檔案目錄下之後
 
     virtualenv -p python3 venv
-
-## 啟動虛擬環境 ##
-
-    source venv/bin/activate
 
 ## 初始化套件 ##
 
     pip install -r requirements.txt
 
 ## 初始化設定 ##
-
-依 settings.py 設定 postgresql 資料庫
-
-    sudo -i -u postgres
-    [sudo] password for <username>:
-    postgres@<username>$ createdb tripDB
-    postgres@<username>$ createuser -P trip
-    Enter password for new role: trip
-    Enter it again: trip
-    postgres@<username>$ psql
-    postgres=# grant all privileges on database "tripDB" to "trip";
-    GRANT
-    postgres=# \q
-    postgres@<username>$ exit
 
 建立資料表所需之 migrate 文件
 
@@ -52,4 +34,4 @@ PostgreSQL 9.5.12
 
 ## 啟用Server ##
 
-    python manage.py runserver
+    python manage.py runserver 0.0.0.0:8000
