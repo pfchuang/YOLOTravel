@@ -1,4 +1,4 @@
-# Trip 主程式
+# YOLO Travel 主程式
 - - -
 
 ## 開發環境 ##
@@ -6,13 +6,15 @@ Ubuntu 16.04
 
 Python 3.5.2
 
-PostgreSQL 9.5.12
+Sqlite3
 
 ## 設定虛擬環境 ##
 
-移動至trip檔案目錄下之後
+移動至YOLOTravel檔案目錄下之後
 
     virtualenv -p python3 venv
+
+    source venv/bin/activate
 
 ## 初始化套件 ##
 
@@ -34,4 +36,4 @@ PostgreSQL 9.5.12
 
 ## 啟用Server ##
 
-    python manage.py runserver 0.0.0.0:8000
+    python manage.py runserver
