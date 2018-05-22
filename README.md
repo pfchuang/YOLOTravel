@@ -6,7 +6,7 @@ Ubuntu 16.04
 
 Python 3.5.2
 
-Sqlite3
+Sqlite
 
 ## 設定虛擬環境 ##
 
