@@ -34,7 +34,6 @@ class Phoenix(object):
                 driver.get(link)
                 items = driver.find_elements(By.XPATH, '//td')
                 items = [item.text for item in items]
-
                 flag = True
                 while flag:
                     self.count += 1
