@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<title>YOLO Travel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-large">
+  <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>YOLO</a>
+  <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Destination</a>
+  <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
+
+</div>
+<!-- Header -->
+<header class="w3-display-container w3-content" style="max-width:1500px;">
+  <img class="w3-image" src="{% static "JTbackground.jpg" %}" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
+  <div class="w3-display-left w3-padding w3-col l6 m8">
+    <div class="w3-container w3-red">
+      <h2><i class="fa fa-bed w3-margin-right"></i>Find Trip</h2>
+    </div>
+    <div class="w3-container w3-white w3-padding-16">
+      <form action="/action_page.php" target="_blank">
+        <div class="w3-row-padding" style="margin:0 -16px;">
+          <div class="w3-half w3-margin-bottom"><i class="fa fa-calendar-o"></i> Departure Date<input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required>
+          </div>
+          <div class="w3-half">
+            <label><i class="fa fa-calendar-o"></i> Return Date</label>
+            <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required>
+          </div>
+        </div>
+        <div class="w3-row-padding" style="margin:8px -16px;">
+          <div class="w3-half w3-margin-bottom">
+            <label><i class="fa fa-male"></i> Destination </label>
+            <div>
+            <select name="region">
+              <option value="North East Asia">東北亞</option>
+              <option value="South East Asia">東南亞</option>
+              <option value="China">大陸、港、澳</option>
+              <option value="Europe">歐洲</option>
+              <option value="Middle Asia">中亞</option>
+              <option value="America">美洲</option>
+              <option value="Africa">非洲</option>
+              <option value="Oceania">大洋洲</option>
+            </select>
+          </div>
+          </div>
+          <div class="w3-half">
+            <label><i class="fa fa-child"></i> Days</label>
+          <input class="w3-input w3-border" type="number" value="0" name="Days" min="0" max="20">
+          </div>
+        </div>
+        <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-search w3-margin-right"></i> Search availability</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1532px;">
+
+  <div class="w3-container w3-margin-top" id="rooms">
+    <h3>Destination</h3>
+    <p> We offer the best group travel for you. You Only Live Once! Bon Voyage!</p>
+  </div>
+
+  <!-- <div class="w3-row-padding">
+
+  </div> -->
+
+  <div class="w3-row-padding w3-padding-16">
+    <div class="w3-third w3-margin-bottom">
+      <img src="https://www.chictravel.com.gr/wp-content/uploads/2018/02/Colmar-Petite-Venise%C2%A9Istock.jpg" alt="Norway" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>Europe</h3>
+        <h6 class="w3-opacity">漫遊歐洲</h6>
+        <a href="{% url "Item:travel_data" "Europe" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="https://www.liontravel.com/comm/2fit/hotsale/american_gotravel/images/NYC1.JPG" alt="Norway" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>America</h3>
+        <h6 class="w3-opacity">驚嘆美洲</h6>
+        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="http://iabroad.com.tw/file/2017/05/%E7%B4%90%E8%A5%BF%E8%98%AD%E9%A2%A8%E6%99%AFJPG.jpg" alt="Norway" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>Oceania</h3>
+        <h6 class="w3-opacity">100%純淨的大洋洲(紐、澳)</h6>
+        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="http://www.caneis.com.tw/link/info/inden/inden/images/inden-001-1.jpg" alt="Norway" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>Middle Asia</h3>
+        <h6 class="w3-opacity">探索神祕的國度-中、西、南亞</h6>
+        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="http://www.mediasphere.com.tw/images/article/big/%E7%9C%8B%E5%B1%95%E8%A6%BD%EF%BC%8C%E8%81%BD%E8%AC%9B%E5%BA%A7%E8%AA%8D%E8%AD%98%E5%9F%83%E5%8F%8A%EF%BC%8C%E7%8F%BE%E6%AD%A3%E5%85%8D%E8%B2%BB%E5%A0%B1%E5%90%8D%E4%B8%AD%E3%80%82%EF%BC%88%E5%9C%96%E7%89%87%E6%8F%90%E4%BE%9B%EF%BC%9A%E5%8F%8B%E6%B3%B0%E6%97%85%E9%81%8A%EF%BC%89.jpg" alt="Norway" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>Africa</h3>
+        <h6 class="w3-opacity">狂野非洲</h6>
+        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="http://saras-media.com/wp-content/uploads/2017/01/shutterstock_414728179.jpg" alt="Norway" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>North East Asia</h3>
+        <h6 class="w3-opacity">無限的想像與冒險-東北亞</h6>
+        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_864,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/phu1gln7aa5gdoftdya2/%E5%8C%85%E8%BB%8A%E9%81%8A%E8%A6%BD%E5%85%AB%E9%81%94%E5%B6%BA%E9%95%B7%E5%9F%8E%E5%8D%8A%E6%97%A5%E9%81%8A%E8%A6%BD.jpg" alt="Norway" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>China</h3>
+        <h6 class="w3-opacity">絕色風情-大陸、港、澳</h6>
+        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="http://www.52travel.tw/wp-content/uploads/2016/05/ma.jpg" alt="Norway" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>South East Asia</h3>
+        <h6 class="w3-opacity">悠遊東南亞</h6>
+        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-row-padding" id="about">
+    <div class="w3-col l4 m7">
+      <h3>About</h3>
+      <h6>Our hotel is one of a kind. It is truely amazing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h6>
+    <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
+    </div>
+    <div class="w3-col l8 m5">
+      <img class="w3-image" src="https://image.freepik.com/free-vector/flat-background-i-love-to-travel_23-2147759560.jpg" alt="The Hotel" style="width:500 ;height:400;padding-left:200px">
+    </div>
+  </div>
+
+  <div class="w3-row w3-large w3-center" style="margin:32px 0">
+    <div class="w3-third"><i class="fa fa-map-marker w3-text-red"></i> 423 Some adr, Chicago, US</div>
+    <div class="w3-third"><i class="fa fa-phone w3-text-red"></i> Phone: +00 151515</div>
+    <div class="w3-third"><i class="fa fa-envelope w3-text-red"></i> Email: mail@mail.com</div>
+  </div>
+
+  <div class="w3-panel w3-red w3-leftbar w3-padding-32">
+    <h6><i class="fa fa-info w3-deep-orange w3-padding w3-margin-right"></i> On demand, we can offer playstation, babycall, children care, dog equipment, etc.</h6>
+  </div>
+
+
+  <div class="w3-container w3-padding-32 w3-black w3-opacity w3-card w3-hover-opacity-off" style="margin:32px 0;">
+    <h2>Get the best offers first!</h2>
+    <p>Join our newsletter.</p>
+    <label>E-mail</label>
+    <input class="w3-input w3-border" type="text" placeholder="Your Email address">
+    <button type="button" class="w3-button w3-red w3-margin-top">Subscribe</button>
+  </div>
+
+  <div class="w3-container" id="contact">
+    <h2>Contact</h2>
+    <p>If you have any questions, do not hesitate to ask them.</p>
+    <i class="fa fa-map-marker w3-text-red" style="width:30px"></i> Chicago, US<br>
+    <i class="fa fa-phone w3-text-red" style="width:30px"></i> Phone: +00 151515<br>
+    <i class="fa fa-envelope w3-text-red" style="width:30px"> </i> Email: mail@mail.com<br>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p>
+      <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
+    </form>
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-padding-32 w3-black w3-center w3-margin-top">
+  <h5>Find Us On</h5>
+  <div class="w3-xlarge w3-padding-16">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+<!-- Add Google Maps -->
+<!-- <script>
+function myMap()
+{
+  myCenter=new google.maps.LatLng(41.878114, -87.629798);
+  var mapOptions= {
+    center:myCenter,
+    zoom:12, scrollwheel: false, draggable: false,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+
+  var marker = new google.maps.Marker({
+    position: myCenter,
+  });
+  marker.setMap(map);
+}
+</script> -->
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script> -->
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+</body>
+</html>

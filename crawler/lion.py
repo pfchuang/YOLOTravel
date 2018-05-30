@@ -15,18 +15,6 @@ class Lion(object):
         res = requests.get(self.url)
         html = BeautifulSoup(res.text, 'lxml')
 
-        #TourName
-        # for i in range(len(html.select("[class='TourName']"))):
-        #     for tour in (html.select("[class='TourName']")[i]).children:
-        #         items.append(tour)
-        #         if(len)
-        # #price
-        # for num in html.select("div[class='price']"):
-        #     for child in (num.span):
-        #         price.append(str(child).strip())
-        # #month
-        # for
-
         items = []
         price = []
         month = []
