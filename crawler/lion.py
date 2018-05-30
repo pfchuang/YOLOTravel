@@ -24,7 +24,7 @@ class Lion(object):
         for item in (html.select("[class='rli_tlin m-b-sm']")):
             tmp_date = []
             tmp_title = item.select("[class='TourName']")[0].contents
-            tmp_price = item.select("div[class='price']")[0].span.contents[0].strip()
+            tmp_price = item.select("div[class='price']")[0].span.contents[0].strip().strip('$')
             date = item.select("[class='dates_info']")[0].find_all('a')
 
             for i in range(len(date)):

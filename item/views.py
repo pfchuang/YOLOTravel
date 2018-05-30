@@ -10,7 +10,7 @@ def index(request):
     return render(request, 'item/index.html', response)
 
 def get_travel_data(request, region_selected=None):
-    datas = None    
+    datas = None
     try:
         if region_selected == "NorthEastAsia":
             datas = NorthEastAsia.objects.all()
@@ -26,6 +26,8 @@ def get_travel_data(request, region_selected=None):
             datas = MiddleAsia.objects.all()
         elif region_selected == "SouthEastAsia":
             datas = SouthEastAsia.objects.all()
+        elif region_selected == "America":
+            datas = America.objects.all()
     except Exception as e:
         print(e)
     return render(request, 'region.html', {'datas': datas})

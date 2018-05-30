@@ -14,7 +14,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 <!-- Navigation Bar -->
 <div class="w3-bar w3-white w3-large">
-  <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>YOLO</a>
+  <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"></i>YOLO</a>
   <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Destination</a>
   <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
   <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
@@ -25,7 +25,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <img class="w3-image" src="{% static "JTbackground.jpg" %}" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
   <div class="w3-display-left w3-padding w3-col l6 m8">
     <div class="w3-container w3-red">
-      <h2><i class="fa fa-bed w3-margin-right"></i>Find Trip</h2>
+      <h2>Find Trip</h2>
     </div>
     <div class="w3-container w3-white w3-padding-16">
       <form action="/action_page.php" target="_blank">
@@ -90,7 +90,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <div class="w3-container w3-white">
         <h3>America</h3>
         <h6 class="w3-opacity">驚嘆美洲</h6>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+        <a href="{% url "Item:travel_data" "America" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
@@ -98,7 +98,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <div class="w3-container w3-white">
         <h3>Oceania</h3>
         <h6 class="w3-opacity">100%純淨的大洋洲(紐、澳)</h6>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+        <a href="{% url "Item:travel_data" "Oceania" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
@@ -106,7 +106,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <div class="w3-container w3-white">
         <h3>Middle Asia</h3>
         <h6 class="w3-opacity">探索神祕的國度-中、西、南亞</h6>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+        <a href="{% url "Item:travel_data" "MiddleAsia" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
@@ -114,15 +114,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <div class="w3-container w3-white">
         <h3>Africa</h3>
         <h6 class="w3-opacity">狂野非洲</h6>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+        <a href="{% url "Item:travel_data" "Africa" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
-      <img src="http://saras-media.com/wp-content/uploads/2017/01/shutterstock_414728179.jpg" alt="Norway" style="width:100%">
+      <img src="http://saras-media.com/wp-content/uploads/2017/01/shutterstock_414728179.jpg" alt="Norway" style="width:100%;margin:5px">
       <div class="w3-container w3-white">
         <h3>North East Asia</h3>
         <h6 class="w3-opacity">無限的想像與冒險-東北亞</h6>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+        <a href="{% url "Item:travel_data" "NorthEastAsia" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
@@ -130,7 +130,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <div class="w3-container w3-white">
         <h3>China</h3>
         <h6 class="w3-opacity">絕色風情-大陸、港、澳</h6>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+        <a href="{% url "Item:travel_data" "China" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
@@ -138,7 +138,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <div class="w3-container w3-white">
         <h3>South East Asia</h3>
         <h6 class="w3-opacity">悠遊東南亞</h6>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button>
+        <a href="{% url "Item:travel_data" "SouthEastAsia" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
   </div>

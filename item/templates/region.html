@@ -29,11 +29,13 @@ tr:nth-child(even) {
 <table>
   <tr>
     <th>Title</th>
+    <th>Price</th>
     <th>Date</th>
   </tr>
     {% for data in datas %}
     <tr>
     <td>{{data.title}}</td>
+    <td>{{data.price}}</td>
     <td>{{data.month}}/{{data.day}}</td>
     </tr>
     {% endfor %}
