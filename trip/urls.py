@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.conf import settings
 from home import views as home
 from item import views as item
+from demo import views as demo
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^item/', item.index),
-    url(r'^$', home.index),
+    # url(r'^$', home.index),
+    url(r'^$', demo.index),
 ]
