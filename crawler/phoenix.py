@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 from fake_useragent import UserAgent
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from item.deposit import phoenixDeposit
+from deposit.phoenix import Deposit
 
 class Phoenix(object):
 
@@ -46,7 +46,7 @@ class Phoenix(object):
                     flag = True
                     continue
                 self.count += 1
-                phoenix = phoenixDeposit(self.tag, items, link)
+                phoenix = Deposit(self.tag, items, link)
                 phoenix.run()
                 print('Crawling and deposit {} data from {}'.format(self.count, self.tag))
                 flag = False
