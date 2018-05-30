@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-from item.deposit import lionDeposit
+from deposit.lion import Deposit
 
 class Lion(object):
     def __init__(self, tag_code):
@@ -40,6 +40,6 @@ class Lion(object):
 
         while items:
             self.count += 1
-            lion = lionDeposit(self.code, items.pop(), price.pop(), month.pop(), day.pop(), status.pop(), link.pop())
+            lion = Deposit(self.code, items.pop(), price.pop(), month.pop(), day.pop(), status.pop(), link.pop())
             lion.run()
             print('Crawling and deposit {} data from {}'.format(self.count, self.code))
