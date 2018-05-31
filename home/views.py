@@ -7,4 +7,5 @@ from django.shortcuts import render
 def index(request):
 
     response = {}
-    return render(request, 'home/index.html', response)
+    return render(request, 'demo/index.html', response)
+    # return render(request, 'home/index.html', response)
