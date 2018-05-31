@@ -30,4 +30,4 @@ def get_travel_data(request, region_selected=None):
             datas = America.objects.all()
     except Exception as e:
         print(e)
-    return render(request, 'region.html', {'datas': datas})
+    return render(request, 'region.html', {'datas': datas, 'region':region_selected})

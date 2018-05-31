@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class NorthEastAsia(models.Model):
-    region = "North East Asia"
     title = models.CharField(max_length=100)
     month = models.CharField(max_length=2)
     day = models.CharField(max_length=2)
@@ -19,7 +18,6 @@ class NorthEastAsia(models.Model):
         return self.title
 
 class Europe(models.Model):
-    region = "Europe"
     title = models.CharField(max_length=100)
     month = models.CharField(max_length=2)
     day = models.CharField(max_length=2)
@@ -36,7 +34,6 @@ class Europe(models.Model):
         return self.title
 
 class Oceania(models.Model):
-    region = "Oceania"
     title = models.CharField(max_length=100)
     month = models.CharField(max_length=2)
     day = models.CharField(max_length=2)
@@ -53,7 +50,6 @@ class Oceania(models.Model):
         return self.title
 
 class Africa(models.Model):
-    region = "Africa"
     title = models.CharField(max_length=100)
     month = models.CharField(max_length=2)
     day = models.CharField(max_length=2)
@@ -70,7 +66,6 @@ class Africa(models.Model):
         return self.title
 
 class China(models.Model):
-    region = "China"
     title = models.CharField(max_length=100)
     month = models.CharField(max_length=2)
     day = models.CharField(max_length=2)
@@ -87,7 +82,6 @@ class China(models.Model):
         return self.title
 
 class America(models.Model):
-    region = "America"
     title = models.CharField(max_length=100)
     month = models.CharField(max_length=2)
     day = models.CharField(max_length=2)
@@ -105,7 +99,6 @@ class America(models.Model):
 
 #include West and South Asia
 class MiddleAsia(models.Model):
-    region = "MiddleAsia"
     title = models.CharField(max_length=100)
     month = models.CharField(max_length=2)
     day = models.CharField(max_length=2)
@@ -122,7 +115,6 @@ class MiddleAsia(models.Model):
         return self.title
 
 class SouthEastAsia(models.Model):
-    region = "South East Asia"
     title = models.CharField(max_length=100)
     month = models.CharField(max_length=2)
     day = models.CharField(max_length=2)
