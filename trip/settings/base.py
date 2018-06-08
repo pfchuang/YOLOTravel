@@ -43,7 +43,25 @@ INSTALLED_APPS = [
     'cloudinary',
     'home',
     'item',
+    'django_q',
 ]
+
+Q_CLUSTER = {
+    'name': 'DjangORM',
+    'workers': 1,
+    'timeout': 3600,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default'
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'djangoq-localmem',
+    }
+}
 
 EASY_MAPS_GOOGLE_MAPS_API_KEY = 'AIzaSyCNPWtTU7KnF5CU6d0Nfd-i6LZEaqHH7d8'
 
