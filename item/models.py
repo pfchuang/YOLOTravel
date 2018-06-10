@@ -1,5 +1,5 @@
 from django.db import models
-import django
+
 # Create your models here.
 class Itinerary(models.Model):
     title = models.CharField(max_length=100)

@@ -24,9 +24,11 @@ class Deposit(object):
             '--7': 'SouthEastAsia'
         }
 
-        item = Itinerary.objects.get_or_create(title=self.items,year=self.year,
+        item = Itinerary.objects.get_or_create(title=self.items,
+                                               year=self.year,
                                                month=self.month,
-                                               day=self.day,departure_date=self.departureDate,
+                                               day=self.day,
+                                               departure_date=self.departureDate,
                                                price=self.price,
                                                region=region[self.tag],
                                                status=self.status,
