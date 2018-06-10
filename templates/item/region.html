@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 50px;
+}
+
+td{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: middle;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(0, 209, 255, 0.4);
+}
+</style>
+</head>
+<body>
+<h1>{{region}}</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Date</th>
+  </tr>
+    {% for data in datas %}
+    <tr>
+    <td><a href={{data.link}} style="text-decoration:none">{{data.title}}</a></td>
+    <td>{{data.price}}</td>
+    <td>{{data.month}}/{{data.day}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
