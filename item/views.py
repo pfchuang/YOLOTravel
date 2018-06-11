@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from .models import *
+from functools import reduce
+import operator
 from django.db.models import Q
 
 # Create your views here.
@@ -23,11 +25,14 @@ def search_result(request):
     region = request.GET.get("region")
     startDate = request.GET.get("StartDate")
     endDate = request.GET.get("EndDate")
-    keyWords = request.GET.get("KeyWords")
+    # keyWords = request.GET.get("KeyWords")
+    search = request.GET.get("KeyWords").split(' ')
+    keyWords = reduce(operator.or_, (Q(title__icontains=x) for x in search))
+
     try:
         datas = Itinerary.objects.filter(Q(region__contains = region)&
                                          Q(departure_date__range=(startDate, endDate))&
-                                         Q(title__icontains = keyWords)).order_by('departure_date')
+                                         Q(keyWords)).order_by('departure_date')
     except Exception as e:
         print(e)
     return render(request, 'item/region.html', {'datas': datas})

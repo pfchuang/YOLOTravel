@@ -26,19 +26,20 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
-<h1>{{region}}</h1>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Price</th>
-    <th>Date</th>
-  </tr>
-    {% for data in datas %}
-    <tr>
-    <td><a href={{data.link}} style="text-decoration:none">{{data.title}}</a></td>
-    <td>{{data.price}}</td>
-    <td>{{data.month}}/{{data.day}}</td>
-    </tr>
-    {% endfor %}
-</table>
+  <h1>{{region}}</h1>
+  <p align="right">總共有{{datas.count}}筆資料</p>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Date</th>
+      </tr>
+        {% for data in datas %}
+        <tr>
+        <td><a href={{data.link}} style="text-decoration:none">{{data.title}}</a></td>
+        <td>{{data.price}}</td>
+        <td>{{data.month}}/{{data.day}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>

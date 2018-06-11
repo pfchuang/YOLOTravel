@@ -31,12 +31,14 @@ class Lion(object):
             date = item.select("[class='dates_info']")[0].find_all('a')
 
             for i in range(len(date)):
+                tmp_month = date[i].get('value').split('/')[1]
+                tmp_day = date[i].get('value').split('/')[2]
                 items.append(tmp_title[0])
                 year.append('2018')
                 price.append(tmp_price)
-                month.append(date[i].get('value').split('/')[1])
-                day.append(date[i].get('value').split('/')[2])
-                convertDate = datetime.date(2018,int(date[i].get('value').split('/')[1]),int(date[i].get('value').split('/')[2]))
+                month.append(tmp_month)
+                day.append(tmp_day)
+                convertDate = datetime.date(2018,tmp_month,tmp_day))
                 departureDate.append(convertDate)
                 link.append(("https://travel.liontravel.com"+date[i].get('href')))
                 if(len(date[i].contents)==1):
