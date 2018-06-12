@@ -28,3 +28,4 @@ selenium==3.0.0
 requests==2.18.4
 fake_useragent==0.1.10
 lxml==4.2.1
+django-q==0.9.4
