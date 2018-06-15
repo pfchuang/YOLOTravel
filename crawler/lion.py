@@ -38,7 +38,7 @@ class Lion(object):
                 price.append(tmp_price)
                 month.append(tmp_month)
                 day.append(tmp_day)
-                convertDate = datetime.date(2018,tmp_month,tmp_day))
+                convertDate = datetime.date(2018,tmp_month,tmp_day)
                 departureDate.append(convertDate)
                 link.append(("https://travel.liontravel.com"+date[i].get('href')))
                 if(len(date[i].contents)==1):
