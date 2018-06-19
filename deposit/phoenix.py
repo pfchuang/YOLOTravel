@@ -3,10 +3,11 @@ import datetime
 
 class Deposit(object):
 
-    def __init__(self, tag_name, items, link):
+    def __init__(self, tag_name, items, link, convertDate):
         self.tag = tag_name
         self.items = items
         self.link = link
+        self.convertDate = convertDate
 
     def run(self):
         region = {
@@ -21,9 +22,6 @@ class Deposit(object):
         }
 
         items = self.items
-        convertDate = ""
-        convertDate = datetime.date(2018,int(items[3].split('.')[0]),int(items[3].split('.')[1]))
-        item = Itinerary.objects.get_or_create(title=items[1],year="2018", month=items[3].split('.')[0],
-                                               day=items[3].split('.')[1],departure_date=convertDate,
-                                               price=items[6], region=region[self.tag],
-                                               status=items[11], agency='Phoenix', link=self.link)
+        item = Itinerary.objects.get_or_create(title=items[1], year='2018', month=items[3].split('.')[0],
+                                               day=items[3].split('.')[1], price=items[6], region=region[self.tag],
+                                               status=items[11], agency='Phoenix', link=self.link, departure_date=self.convertDate)
