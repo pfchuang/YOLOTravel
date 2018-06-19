@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import requests
+import datetime
 
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
@@ -46,7 +47,8 @@ class Phoenix(object):
                     flag = True
                     continue
                 self.count += 1
-                phoenix = Deposit(self.tag, items, link)
+                convertDate = datetime.date(2018, int(items[3].split('.')[0]), int(items[3].split('.')[1]))
+                phoenix = Deposit(self.tag, items, link, convertDate)
                 phoenix.run()
                 print('Crawling and deposit {} data from {}'.format(self.count, self.tag))
                 flag = False
