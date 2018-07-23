@@ -23,5 +23,4 @@ class Cola(object):
         status=[]
         link = []
         year = []
-
-    
+        aaaa = []
