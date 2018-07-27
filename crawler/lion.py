@@ -7,7 +7,8 @@ from deposit.lion import Deposit
 
 class Lion(object):
     def __init__(self, tag_code):
-        self.url = 'https://travel.liontravel.com/search?Country=TW&WebCode=B2C&TravelType=1&Page=1&PageSize=1000&DepartureID=&GoDateStart=2018-06-11&GoDateEnd=2018-12-31&IsEnsureGroup=false&ArriveID=' + tag_code
+        now = datetime.datetime.now().strftime("%Y-%m-%d")
+        self.url = "https://travel.liontravel.com/search?Country=TW&WebCode=B2C&TravelType=1&Page=1&PageSize=1000&DepartureID=&GoDateStart="+ now + "&GoDateEnd=2018-12-31&IsEnsureGroup=false&ArriveID" + tag_code
         self.code = tag_code
         self.count = 0
 
