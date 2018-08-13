@@ -12,6 +12,7 @@ class Lion(object):
         self.code = tag_code
         self.count = 0
 
+
     def crawl(self):
         res = requests.get(self.url)
         html = BeautifulSoup(res.text, 'lxml')
