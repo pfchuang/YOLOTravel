@@ -8,6 +8,7 @@ from fake_useragent import UserAgent
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from deposit.phoenix import Deposit
+from crawler.setting import Setting
 
 class Phoenix(object):
 
@@ -31,7 +32,9 @@ class Phoenix(object):
         wait_list += links
         while wait_list:
             link = wait_list.pop()
-            driver = webdriver.PhantomJS()
+            # driver = webdriver.PhantomJS()
+            setting = Setting()
+            driver = setting.settingDriver()
             driver.get(link)
             items = driver.find_elements(By.XPATH, '//td')
             items = [item.text for item in items]

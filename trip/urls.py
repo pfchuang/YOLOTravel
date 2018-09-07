@@ -19,6 +19,9 @@ from django.conf import settings
 from home import views as home
 from item import views as item
 
+
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^item/', item.index),
