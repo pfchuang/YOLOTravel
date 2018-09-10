@@ -35,6 +35,7 @@ class Gabriel(object):
             self.data_dic['status'].append(tmp_status)
             tmp_price = (soup.select("div.out-showcue-list > ul:nth-of-type(" + str(i) + ") > li:nth-of-type(3)")[0].text.split('：')[1])
             self.data_dic['price'].append(tmp_price)
+            browser.get(tmp_link)
             detailed = (browser.find_elements_by_xpath("(//div[@class='note'])"))
             day_count = 0
             dd = {}
