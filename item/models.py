@@ -13,6 +13,7 @@ class Itinerary(models.Model):
     status = models.CharField(max_length=10)
     link = models.URLField(blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    detailed = models.TextField()
 
     def __unicode__(self):
         return self.title
