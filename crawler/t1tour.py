@@ -47,6 +47,6 @@ class T1tour(object):
 
         t1tour = Deposit(self.code, self.data_dic)
         t1tour.run()
-    
+
 def has_title(tag):
     return tag.has_attr('title')

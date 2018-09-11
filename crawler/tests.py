@@ -2,6 +2,7 @@ from crawler.phoenix import Phoenix
 from crawler.lion import Lion
 from crawler.cola import Cola
 from crawler.t1tour import T1tour
+from crawler.gabriel import Gabriel
 from item.models import Itinerary
 
 def phoenix_test():
@@ -34,6 +35,12 @@ def t1tour_test():
         for i in range(1,total_page+1):
             t1tour.crawl(i)
 
+def gabriel_test():
+    region = ['JP', 'CN', 'VN', 'ID', 'TH']
+    while region:
+        tag_code = region.pop()
+        gabriel = Gabriel(tag_code)
+        gabriel.crawl()
 
 def flush_database():
     Itinerary.objects.all().delete()

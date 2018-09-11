@@ -3,6 +3,7 @@ from selenium import webdriver
 class Setting:
     def getChromeOptions(self):
         chrome_options_headless = webdriver.ChromeOptions()
+        chrome_options_headless.add_argument('--window-size=1900,1000')
         chrome_options_headless.add_argument('--headless')
         return chrome_options_headless
 

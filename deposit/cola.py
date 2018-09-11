@@ -24,7 +24,7 @@ class Deposit(object):
             'G': 'China',
             'H': 'China',
             'I': 'America',
-            'J': 'SouthEastAsia',
+            'J': 'Pacific',
             'K': 'Oceania',
             'L': 'Europe',
             'M': 'MiddleAsia',
