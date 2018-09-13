@@ -41,7 +41,7 @@ class Gabriel(object):
             dd = {}
             for item in detailed[:-1]:
                 day_count += 1
-                dd[('DAY ' + str(day_count))] = item.text
+                dd[("DAY " + str(day_count))] = item.text
             self.data_dic['detailed'].append(dd)
             browser.back()
         browser.close()

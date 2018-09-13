@@ -1,7 +1,9 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Itinerary(models.Model):
+    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=100)
     year = models.CharField(max_length=4)
     month = models.CharField(max_length=2)
@@ -20,3 +22,6 @@ class Itinerary(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_travel_detail(self):
+        return reverse('Item:travel_data_detail', args = [self.id])

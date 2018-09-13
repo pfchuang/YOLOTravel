@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render
+# from django.template import RequestContext, loader
 from .models import *
 from functools import reduce
 import operator
 from django.db.models import Q
+import ast
 
 # Create your views here.
+
 def index(request):
 
     response = {}
@@ -36,3 +39,8 @@ def search_result(request):
     except Exception as e:
         print(e)
     return render(request, 'item/region.html', {'datas': datas})
+
+def data_detail(request, id):
+    data = Itinerary.objects.get(id = id)
+    detail = ast.literal_eval(data.detailed)
+    return render(request, 'item/detail.html', locals())

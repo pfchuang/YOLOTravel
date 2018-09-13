@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    p {
+        /* border-left: 6px solid plum; */
+        background-color: pink;
+        padding: 15px;
+    }
+    p1 {
+        background-color: plum;
+        padding: 15px;
+    }
+</style>
+</head>
+<body>
+    {% for key, value in detail.items %}
+        <p1>{{ key }}</p1><p>{{ value }}</p>
+        
+    {% endfor %}
+</body>
+</html>
