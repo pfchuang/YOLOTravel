@@ -1,17 +1,16 @@
 from item.models import Itinerary
+from item.models import Travel_Date
 
 class Deposit(object):
 
-    def __init__(self, tag_code, items, price, year, month, day, departure_date, status, link):
+    def __init__(self, tag_code, title, price, departure_date, status, link, date_price):
         self.tag = tag_code
-        self.items = items
+        self.title = title
         self.price = price
-        self.year = year
-        self.month = month
-        self.day = day
         self.departureDate = departure_date
         self.status = status
         self.link = link
+        self.date_price = date_price
 
     def run(self):
         region = {
@@ -24,13 +23,15 @@ class Deposit(object):
             '--7': 'SouthEastAsia'
         }
 
-        item = Itinerary.objects.get_or_create(title=self.items,
-                                               year=self.year,
-                                               month=self.month,
-                                               day=self.day,
-                                               departure_date=self.departureDate,
-                                               price=self.price,
-                                               region=region[self.tag],
-                                               status=self.status,
-                                               link=self.link,
-                                               agency='Lion')
+        item = Itinerary.objects.create(title=self.title,
+                         price=self.price,
+                         region=region[self.tag],
+                         agency='Lion',
+                         detailed='')
+        for i in range(len(self.departureDate)):
+            travel_date = Travel_Date.objects.create(departure_date=self.departureDate[i],
+                                      price=self.date_price[i],
+                                      status=self.status[i],
+                                      link=self.link[i],
+                                      itinerary=item)                                 
+                                               
