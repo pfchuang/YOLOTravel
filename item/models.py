@@ -27,6 +27,3 @@ class Travel_Date(models.Model):
     price = models.CharField(max_length=6)
     created_at = models.DateTimeField(auto_now_add=True)
     itinerary = models.ForeignKey(Itinerary, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.departure_date
