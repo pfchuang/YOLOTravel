@@ -35,7 +35,7 @@ def search_result(request):
     try:
         datas = Itinerary.objects.filter(Q(region__contains = region)&
                                          Q(travel_date__departure_date__range=(startDate, endDate))&
-                                         Q(keyWords)).order_by('id').distinct()
+                                         Q(keyWords)).order_by('-id').distinct()
         travel_dates = Travel_Date.objects.filter(itinerary__in=datas)
     except Exception as e:
         print(e)
