@@ -13,7 +13,7 @@ class Gabriel(object):
         now = datetime.datetime.now().strftime("%Y-%m-%d")
         self.code = tag_code
         self.url = "http://www.gabriel.com.tw/Search?sdate=" + str(now) + "&edate=2018-12-31&country=" + tag_code
-        self.data_dic = {'title':[], 'price':[], 'year':[], 'month':[], 'day':[], 'departure_date':[], 'link':[], 'status':[], 'detailed':[]}
+        self.data_dic = {'title':[], 'price':[], 'year':[], 'month':[], 'day':[], 'departure_date':[], 'link':[], 'status':[], 'detail':[]}
 
     def content(self):
         setting = Setting()
@@ -38,11 +38,11 @@ class Gabriel(object):
             browser.get(tmp_link)
             detailed = (browser.find_elements_by_xpath("(//div[@class='note'])"))
             day_count = 0
-            dd = {}
+            detail_dic = {}
             for item in detailed[:-1]:
                 day_count += 1
-                dd[("DAY " + str(day_count))] = item.text
-            self.data_dic['detailed'].append(dd)
+                detail_dic[("DAY " + str(day_count))] = item.text
+            self.data_dic['detail'].append(detail_dic)
             browser.back()
         browser.close()
 

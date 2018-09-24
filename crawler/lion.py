@@ -11,6 +11,7 @@ class Lion(object):
         self.url = "https://travel.liontravel.com/search?Country=TW&WebCode=B2C&TravelType=1&Page=1&PageSize=1000&DepartureID=&GoDateStart="+ now + "&GoDateEnd=2018-12-31&IsEnsureGroup=false&ArriveID" + tag_code
         self.code = tag_code
         self.count = 0
+        self.data_dic = {'title':[], 'price':[], 'year':[], 'month':[], 'day':[], 'departure_date':[], 'link':[], 'status':[], 'detailed':[]}
 
 
     def crawl(self):
@@ -31,25 +32,26 @@ class Lion(object):
             tmp_title = item.select("[class='TourName']")[0].contents
             tmp_price = item.select("div[class='price']")[0].span.contents[0].strip().strip('$')
             date = item.select("[class='dates_info']")[0].find_all('a')
+            self.data_dic['title'].append(tmp_title[0]) 
+            self.data_dic['link'].append(("https://travel.liontravel.com"+date[i].get('href')))
+            if(len(date[i].contents)==1):
+                self.data_dic['status'].append("no")
+            else:
+                self.data_dic['status'].append(date[i].select('span')[0].text)
 
             for i in range(len(date)):
                 tmp_month = date[i].get('value').split('/')[1]
                 tmp_day = date[i].get('value').split('/')[2]
-                items.append(tmp_title[0])
-                year.append('2018')
-                price.append(tmp_price)
-                month.append(tmp_month)
-                day.append(tmp_day)
-                convertDate = datetime.date(2018,int(tmp_month),int(tmp_day))
-                departureDate.append(convertDate)
-                link.append(("https://travel.liontravel.com"+date[i].get('href')))
-                if(len(date[i].contents)==1):
-                    status.append("no")
-                else:
-                    status.append(date[i].select('span')[0].text)
+                
 
-        while items:
-            self.count += 1
-            lion = Deposit(self.code, items.pop(), price.pop(), year.pop(), month.pop(), day.pop(), departureDate.pop(), status.pop(), link.pop())
-            lion.run()
-            print('Crawling and deposit {} data from {}'.format(self.count, self.code))
+                self.data_dic['year'].append('2018')
+                self.data_dic['price'].append(tmp_price)
+                self.data_dic['month'].append(tmp_month)
+                self.data_dic['day'].append(tmp_day)
+                convertDate = datetime.date(2018,int(tmp_month),int(tmp_day))
+                self.data_dic['departure_date'].append(convertDate)
+                
+        lion = Deposit(self.code, self.data_dic)
+        lion.run()
+
+        

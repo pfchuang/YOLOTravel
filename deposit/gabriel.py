@@ -26,6 +26,6 @@ class Deposit(object):
                                                    region=region[self.tag],
                                                    status=self.data_dic['status'].pop(),
                                                    link=self.data_dic['link'].pop(),
-                                                   detailed=self.data_dic['detailed'].pop(),
+                                                   detailed=self.data_dic['detail'].pop(),
                                                    agency='Gabriel')
             print('Crawling and deposit {} data from {}'.format(self.count, self.tag))

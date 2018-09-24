@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 from deposit.t1tour import Deposit
 import datetime
+from selenium import webdriver
+from crawler.setting import Setting
 
 class T1tour(object):
     def __init__(self, tag_code):
@@ -45,6 +47,10 @@ class T1tour(object):
             for data in item.select("[class='t-status']"):
                 tmp_status = data.contents[0].text
                 self.data_dic['status'].append(tmp_status)
+        setting = Setting()
+        browser = setting.settingDriver()
+        browser.get(self.url)
+        
 
         t1tour = Deposit(self.code, self.data_dic)
         t1tour.run()
