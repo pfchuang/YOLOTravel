@@ -1,11 +1,16 @@
 from item.models import Itinerary
+from item.models import Travel_Date
 
 class Deposit(object):
 
-    def __init__(self, tag_code, data_dic):
+    def __init__(self, tag_code, title, price, departure_date, status, link, date_price):
         self.tag = tag_code
-        self.data_dic = data_dic
-        self.count = 0
+        self.title = title
+        self.price = price
+        self.departureDate = departure_date
+        self.status = status
+        self.link = link
+        self.date_price = date_price
 
     def run(self):
         region = {
@@ -18,17 +23,15 @@ class Deposit(object):
             '--7': 'SouthEastAsia'
         }
 
-        while self.data_dic['title']:
-            self.count += 1
-            item = Itinerary.objects.get_or_create(title=self.data_dic['title'].pop(),
-                                                year=self.data_dic['year'].pop(),
-                                                month=self.data_dic['month'].pop(),
-                                                day=self.data_dic['day'].pop(),
-                                                departure_date=self.data_dic['departure_date'].pop(),
-                                                price=self.data_dic['price'].pop(),
-                                                region=region[self.tag],
-                                                status=self.data_dic['status'].pop(),
-                                                link=self.data_dic['link'].pop(),
-                                                agency='Lion')
-            print('Crawling and deposit {} data from {}'.format(self.count, self.tag))
-            
+        item = Itinerary.objects.create(title=self.title,
+                         price=self.price,
+                         region=region[self.tag],
+                         agency='Lion',
+                         detailed='')
+        for i in range(len(self.departureDate)):
+            travel_date = Travel_Date.objects.create(departure_date=self.departureDate[i],
+                                      price=self.date_price[i],
+                                      status=self.status[i],
+                                      link=self.link[i],
+                                      itinerary=item)                                 
+                                               

@@ -13,7 +13,12 @@ class Gabriel(object):
         now = datetime.datetime.now().strftime("%Y-%m-%d")
         self.code = tag_code
         self.url = "http://www.gabriel.com.tw/Search?sdate=" + str(now) + "&edate=2018-12-31&country=" + tag_code
-        self.data_dic = {'title':[], 'price':[], 'year':[], 'month':[], 'day':[], 'departure_date':[], 'link':[], 'status':[], 'detail':[]}
+        self.data_dic = {'title':'', 'price':'', 'departure_date':[], 'link':[], 'status':[], 'detailed':{}}
+        self.items = []
+        self.count = 0
+
+    def resetDataDic(self):
+        self.data_dic = {'title':'', 'price':'', 'departure_date':'', 'link':'', 'status':'', 'detailed':{}, 'date_price':''}
 
     def content(self):
         setting = Setting()
@@ -22,19 +27,17 @@ class Gabriel(object):
         soup = BeautifulSoup(browser.page_source, 'lxml')
         for i in range(2,len(soup.select("ul[class='cue-list']"))+2):
             tmp_title = soup.select("div.out-showcue-list > ul:nth-of-type(" + str(i) + ") > li:nth-of-type(2) > a")[0].text
-            self.data_dic['title'].append(tmp_title)
+            self.data_dic['title'] = tmp_title
             tmp_date = soup.select("div.out-showcue-list > ul:nth-of-type(" + str(i) + ") > li:nth-of-type(1) > p")[0].text.replace('\r', '').replace('\n', '').strip()[:10]
             convertDate = datetime.date(int(tmp_date.split('/')[0]),int(tmp_date.split('/')[1]),int(tmp_date.split('/')[2]))
-            self.data_dic['departure_date'].append(convertDate)
-            self.data_dic['year'].append(tmp_date.split('/')[0])
-            self.data_dic['month'].append(tmp_date.split('/')[1])
-            self.data_dic['day'].append(tmp_date.split('/')[2])
+            self.data_dic['departure_date'] = convertDate
             tmp_link = ("http://www.gabriel.com.tw" + soup.select("div.out-showcue-list > ul:nth-of-type(" + str(i) + ") > li:nth-of-type(2) > a")[0]['href'])
-            self.data_dic['link'].append(tmp_link)
+            self.data_dic['link'] = tmp_link
             tmp_status = soup.select("div.out-showcue-list > ul:nth-of-type(" + str(i) + ") > li:nth-of-type(5)")[0].text.split('：')[1].strip()
-            self.data_dic['status'].append(tmp_status)
+            self.data_dic['status'] = tmp_status
             tmp_price = (soup.select("div.out-showcue-list > ul:nth-of-type(" + str(i) + ") > li:nth-of-type(3)")[0].text.split('：')[1])
-            self.data_dic['price'].append(tmp_price)
+            self.data_dic['price'] = tmp_price
+            self.data_dic['date_price'] = tmp_price
             browser.get(tmp_link)
             detailed = (browser.find_elements_by_xpath("(//div[@class='note'])"))
             day_count = 0
@@ -42,7 +45,9 @@ class Gabriel(object):
             for item in detailed[:-1]:
                 day_count += 1
                 detail_dic[("DAY " + str(day_count))] = item.text
-            self.data_dic['detail'].append(detail_dic)
+            self.data_dic['detailed'] = detail_dic
+            self.items.append(self.data_dic)
+            self.resetDataDic()
             browser.back()
         browser.close()
 
@@ -73,5 +78,8 @@ class Gabriel(object):
                 self.content()
         elif pageNum == 1:
             self.content()
-        gabriel = Deposit(self.code, self.data_dic)
-        gabriel.run()
+        while self.items:
+            self.count += 1
+            gabriel = Deposit(self.code, self.items.pop())
+            gabriel.run()
+            print('Crawling and deposit {} data from {}'.format(self.count, self.code))

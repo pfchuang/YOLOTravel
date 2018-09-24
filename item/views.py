@@ -18,10 +18,11 @@ def index(request):
 def get_travel_data(request, region_selected=None):
     datas = None
     try:
-        datas = Itinerary.objects.filter(region = region_selected).order_by('departure_date')
+        datas = Itinerary.objects.filter(region = region_selected).order_by('-id')
+        travel_dates = Travel_Date.objects.filter(itinerary__in=datas)
     except Exception as e:
         print(e)
-    return render(request, 'item/region.html', {'datas': datas, 'region':region_selected})
+    return render(request, 'item/region.html', {'datas': datas, 'region':region_selected, 'travel_dates': travel_dates})
 
 def search_result(request):
     datas=None
@@ -34,11 +35,12 @@ def search_result(request):
 
     try:
         datas = Itinerary.objects.filter(Q(region__contains = region)&
-                                         Q(departure_date__range=(startDate, endDate))&
-                                         Q(keyWords)).order_by('departure_date')
+                                         Q(travel_date__departure_date__range=(startDate, endDate))&
+                                         Q(keyWords)).order_by('-id').distinct()
+        travel_dates = Travel_Date.objects.filter(itinerary__in=datas)
     except Exception as e:
         print(e)
-    return render(request, 'item/region.html', {'datas': datas})
+    return render(request, 'item/region.html', {'datas': datas, 'travel_dates': travel_dates})
 
 def data_detail(request, id):
     data = Itinerary.objects.get(id = id)
