@@ -1,4 +1,5 @@
 from item.models import Itinerary
+from item.models import Travel_Date
 
 class Deposit(object):
 
@@ -21,14 +22,14 @@ class Deposit(object):
         }
         while self.data_dic['title']:
             self.count += 1
-            item = Itinerary.objects.get_or_create(title=self.data_dic['title'].pop(),
-                                                   year=self.data_dic['year'].pop(),
-                                                   month=self.data_dic['month'].pop(),
-                                                   day=self.data_dic['day'].pop(),
-                                                   departure_date=self.data_dic['departure_date'].pop(),
-                                                   price=self.data_dic['price'].pop(),
-                                                   region=region[self.tag],
-                                                   status=self.data_dic['status'].pop(),
-                                                   link=self.data_dic['link'].pop(),
-                                                   agency='TOneTour')
+            item = Itinerary.objects.create(title=self.data_dic['title'].pop(),
+                                            price=self.data_dic['price'].pop(),
+                                            region=region[self.tag],
+                                            agency='TOneTour',
+                                            detailed='')
+            travel_date = Travel_Date.objects.create(departure_date=self.data_dic['departure_date'].pop(),
+                                      price=self.data_dic['date_price'].pop(),
+                                      status=self.data_dic['status'].pop(),
+                                      link=self.data_dic['link'].pop(),
+                                      itinerary=item)
             print('Crawling and deposit {} data from {}'.format(self.count, self.tag))
