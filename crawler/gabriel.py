@@ -13,12 +13,12 @@ class Gabriel(object):
         now = datetime.datetime.now().strftime("%Y-%m-%d")
         self.code = tag_code
         self.url = "http://www.gabriel.com.tw/Search?sdate=" + str(now) + "&edate=2018-12-31&country=" + tag_code
-        self.data_dic = {'title':'', 'price':'', 'departure_date':[], 'link':[], 'status':[], 'detailed':{}}
+        self.data_dic = {'title':'', 'price':'', 'departure_date':[], 'link':[], 'status':[], 'detail':{}}
         self.items = []
         self.count = 0
 
     def resetDataDic(self):
-        self.data_dic = {'title':'', 'price':'', 'departure_date':'', 'link':'', 'status':'', 'detailed':{}, 'date_price':''}
+        self.data_dic = {'title':'', 'price':'', 'departure_date':'', 'link':'', 'status':'', 'detail':{}, 'date_price':''}
 
     def content(self):
         setting = Setting()
@@ -39,13 +39,13 @@ class Gabriel(object):
             self.data_dic['price'] = tmp_price
             self.data_dic['date_price'] = tmp_price
             browser.get(tmp_link)
-            detailed = (browser.find_elements_by_xpath("(//div[@class='note'])"))
+            detail = (browser.find_elements_by_xpath("(//div[@class='note'])"))
             day_count = 0
             detail_dic = {}
-            for item in detailed[:-1]:
+            for item in detail[:-1]:
                 day_count += 1
                 detail_dic[("DAY " + str(day_count))] = item.text
-            self.data_dic['detailed'] = detail_dic
+            self.data_dic['detail'] = detail_dic
             self.items.append(self.data_dic)
             self.resetDataDic()
             browser.back()
