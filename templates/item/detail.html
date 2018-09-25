@@ -11,12 +11,19 @@
         background-color: plum;
         padding: 15px;
     }
+    a {
+        color:deepskyblue;
+    }
 </style>
 </head>
 <body>
+    <a href="{{ data.link }}">{{ data.title }}</a><br>
+    <b>
+    <br>
     {% for key, value in detail.items %}
         <p1>{{ key }}</p1><p>{{ value }}</p>
         
     {% endfor %}
+    </b>
 </body>
 </html>

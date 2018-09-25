@@ -1,11 +1,11 @@
 from item.models import Itinerary
+from item.models import Travel_Date
 
 class Deposit(object):
 
     def __init__(self, tag_code, data_dic):
         self.data_dic = data_dic
         self.tag = tag_code
-        self.count = 0
 
     def run(self):
         region = {
@@ -15,17 +15,15 @@ class Deposit(object):
             'ID':'SouthEastAsia',
             'TH':'SouthEastAsia'
         }
-        while self.data_dic['title']:
-            self.count += 1
-            item = Itinerary.objects.get_or_create(title=self.data_dic['title'].pop(),
-                                                   year=self.data_dic['year'].pop(),
-                                                   month=self.data_dic['month'].pop(),
-                                                   day=self.data_dic['day'].pop(),
-                                                   departure_date=self.data_dic['departure_date'].pop(),
-                                                   price=self.data_dic['price'].pop(),
-                                                   region=region[self.tag],
-                                                   status=self.data_dic['status'].pop(),
-                                                   link=self.data_dic['link'].pop(),
-                                                   detailed=self.data_dic['detailed'].pop(),
-                                                   agency='Gabriel')
-            print('Crawling and deposit {} data from {}'.format(self.count, self.tag))
+
+        item = Itinerary.objects.create(title=self.data_dic['title'],
+                                        price=self.data_dic['price'],
+                                        region=region[self.tag],
+                                        detailed=self.data_dic['detailed'],
+                                        agency='Gabriel')
+        travel_date = Travel_Date.objects.create(departure_date=self.data_dic['departure_date'],
+                                    price=self.data_dic['date_price'],
+                                    status=self.data_dic['status'],
+                                    link=self.data_dic['link'],
+                                    itinerary=item)  
+        

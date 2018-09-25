@@ -37,8 +37,14 @@ tr:nth-child(even) {
         {% for data in datas %}
         <tr>
         <td><a href="{{ data.get_travel_detail }}" style="text-decoration:none">{{data.title}}</a></td>
-        <td>{{data.price}}</td>
-        <td>{{data.month}}/{{data.day}}</td>
+        <td>{{data.price}}起</td>
+        <td>
+            {% for travel_date in travel_dates %}
+                {% if travel_date.itinerary.id == data.id %}
+                    {{ travel_date.departure_date|date:"m/d/Y" }}<br>
+                {% endif %}
+            {% endfor %}
+        </td>
         </tr>
         {% endfor %}
     </table>
