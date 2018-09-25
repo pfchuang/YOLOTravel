@@ -2,35 +2,33 @@ from item.models import Itinerary
 
 class Deposit(object):
 
-    def __init__(self, tag_code, items, price, year, month, day, departure_date, status, link):
-        self.tag = tag_code
-        self.items = items
-        self.price = price
-        self.year = year
-        self.month = month
-        self.day = day
-        self.departureDate = departure_date
-        self.status = status
-        self.link = link
+   def __init__(self, tag_code, data_dic):
+       self.tag = tag_code
+       self.data_dic = data_dic
+       self.count = 0
 
-    def run(self):
-        region = {
-            '--3': 'Europe',
-            '--2': 'Oceania',
-            '--4': 'Africa',
-            '--5': 'China',
-            '--1': 'America',
-            '--6': 'NorthEastAsia',
-            '--7': 'SouthEastAsia'
-        }
+   def run(self):
+       region = {
+           '--3': 'Europe',
+           '--2': 'Oceania',
+           '--4': 'Africa',
+           '--5': 'China',
+           '--1': 'America',
+           '--6': 'NorthEastAsia',
+           '--7': 'SouthEastAsia'
+       }
 
-        item = Itinerary.objects.get_or_create(title=self.items,
-                                               year=self.year,
-                                               month=self.month,
-                                               day=self.day,
-                                               departure_date=self.departureDate,
-                                               price=self.price,
+       while self.data_dic['title']:
+           self.count += 1
+           item = Itinerary.objects.get_or_create(title=self.data_dic['title'].pop(),
+                                               year=self.data_dic['year'].pop(),
+                                               month=self.data_dic['month'].pop(),
+                                               day=self.data_dic['day'].pop(),
+                                               departure_date=self.data_dic['departure_date'].pop(),
+                                               price=self.data_dic['price'].pop(),
                                                region=region[self.tag],
-                                               status=self.status,
-                                               link=self.link,
+                                               status=self.data_dic['status'].pop(),
+                                               link=self.data_dic['link'].pop(),
                                                agency='Lion')
+           print('Crawling and deposit {} data from {}'.format(self.count, self.tag))
+          
