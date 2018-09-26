@@ -9,14 +9,14 @@ from crawler.setting import Setting
 class Lion(object):
     def __init__(self, tag_code):
         now = datetime.datetime.now().strftime("%Y-%m-%d")
-        self.url = "https://travel.liontravel.com/search?Country=TW&WebCode=B2C&TravelType=1&Page=1&PageSize=1000&DepartureID=&GoDateStart="+ now + "&GoDateEnd=2018-12-31&IsEnsureGroup=false&ArriveID=" + tag_code
+        self.url = "https://travel.liontravel.com/search?Country=TW&WebCode=B2C&TravelType=1&Page=1&PageSize=1000&DepartureID=&GoDateStart="+ now + "&GoDateEnd=2018-10-05&IsEnsureGroup=false&ArriveID=" + tag_code
         print(self.url)
         self.code = tag_code
         self.count = 0
-        self.itinerary = {'title':'', 'price':'', 'detail':'','departure_date':[],'link':[], 'status':[], 'date_price':[]}
+        self.itinerary = {'title':'', 'price':'', 'detail':{}, 'departure_date':[],'link':[], 'status':[], 'date_price':[]}
     
     def resetItinerary(self):
-        self.itinerary = {'title':'', 'price':'', 'detail':'','departure_date':[],'link':[], 'status':[], 'date_price':[]}
+        self.itinerary = {'title':'', 'price':'', 'detail':{},'departure_date':[],'link':[], 'status':[], 'date_price':[]}
     
     def crawl(self):
         res = requests.get(self.url)
@@ -56,14 +56,13 @@ class Lion(object):
         res = requests.get(link)
         soup = BeautifulSoup(res.text, 'lxml')
         try:
-            if(soup.select("[class = 'd-md-b md-font-14 font-20 md-m-b-xxl']")[0].text == "行程內容"):
-                detail = soup.select("[class='clp-subtitle font-16']")
-                day_count = 0
-                detail_dic = {}
-                for item in detail:
-                    day_count += 1
-                    detail_dic[("DAY " + str(day_count))] = item.text
-                self.itinerary['detail'] = detail_dic
+            detail = soup.select("[class='clp-subtitle font-16']")
+            day_count = 0
+            detail_dic = {}
+            for item in detail:
+                day_count += 1
+                detail_dic[("DAY " + str(day_count))] = item.text
+            self.itinerary['detail'] = detail_dic
         except:
             no_detail = {"notice":"此項目無行程內容"}
             self.itinerary['detail'] = no_detail

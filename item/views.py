@@ -44,6 +44,6 @@ def search_result(request):
 
 def data_detail(request, id):
     data = Itinerary.objects.get(id = id)
-    detail = ast.literal_eval(data.detailed)
+    detail = ast.literal_eval(data.detail)
     travel_dates = Travel_Date.objects.filter(itinerary=data)
     return render(request, 'item/detail.html', locals())

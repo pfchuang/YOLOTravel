@@ -19,7 +19,7 @@ class Deposit(object):
         item = Itinerary.objects.create(title=self.data_dic['title'],
                                         price=self.data_dic['price'],
                                         region=region[self.tag],
-                                        detailed=self.data_dic['detail'],
+                                        detail=self.data_dic['detail'],
                                         agency='Gabriel')
         travel_date = Travel_Date.objects.create(departure_date=self.data_dic['departure_date'],
                                     price=self.data_dic['date_price'],
