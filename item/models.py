@@ -9,7 +9,7 @@ class Itinerary(models.Model):
     region = models.CharField(max_length=13)
     agency = models.CharField(max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
-    detailed = models.TextField()
+    detail = models.TextField()
 
     def __unicode__(self):
         return self.title
