@@ -3,14 +3,15 @@ from item.models import Travel_Date
 
 class Deposit(object):
 
-    def __init__(self, tag_code, title, price, departure_date, status, link, date_price):
+    def __init__(self, tag_code, itinerary):
         self.tag = tag_code
-        self.title = title
-        self.price = price
-        self.departureDate = departure_date
-        self.status = status
-        self.link = link
-        self.date_price = date_price
+        self.itinerary = itinerary
+        # self.title = title
+        # self.price = price
+        # self.departureDate = departure_date
+        # self.status = status
+        # self.link = link
+        # self.date_price = date_price
 
     def run(self):
         region = {
@@ -23,15 +24,15 @@ class Deposit(object):
             '--7': 'SouthEastAsia'
         }
 
-        item = Itinerary.objects.create(title=self.title,
-                        price=self.price,
-                        region=region[self.tag],
-                        agency='Lion',
-                        detailed='')
-        for i in range(len(self.departureDate)):
-            travel_date = Travel_Date.objects.create(departure_date=self.departureDate[i],
-                                    price=self.date_price[i],
-                                    status=self.status[i],
-                                    link=self.link[i],
-                                    itinerary=item)                                 
+        item = Itinerary.objects.create(title=self.itinerary['title'],
+                         price=self.itinerary['price'],
+                         region=region[self.tag],
+                         agency='Lion',
+                         detail=self.itinerary['detail'])
+        for i in range(len(self.itinerary['departure_date'])):
+            travel_date = Travel_Date.objects.create(departure_date=self.itinerary['departure_date'],
+                                      price=self.itinerary['date_price'],
+                                      status=self.itinerary['status'],
+                                      link=self.itinerary['link'],
+                                      itinerary=item)                                 
                                                
