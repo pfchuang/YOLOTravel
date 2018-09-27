@@ -1,4 +1,5 @@
 from item.models import Itinerary
+from item.models import Travel_Date
 import datetime
 
 class Deposit(object):
@@ -19,9 +20,15 @@ class Deposit(object):
             'SM': 'MiddleAsia',
             'SN': 'NorthEastAsia',
             'SS': 'SouthEastAsia'
-        }
+        } 
 
-        items = self.items
-        item = Itinerary.objects.get_or_create(title=items[1], year='2018', month=items[3].split('.')[0],
-                                               day=items[3].split('.')[1], price=items[6], region=region[self.tag],
-                                               status=items[11], agency='Phoenix', link=self.link, departure_date=self.convertDate)
+        item = Itinerary.objects.create(title=self.items[1],
+                                        price=self.items[6],
+                                        region=region[self.tag],
+                                        detail='',
+                                        agency='Phoenix')
+        travel_date = Travel_Date.objects.create(departure_date=self.convertDate,
+                                    price=self.items[6],
+                                    status=self.items[11],
+                                    link=self.link,
+                                    itinerary=item)
