@@ -26,7 +26,7 @@ class Deposit(object):
                                             price=self.data_dic['price'].pop(),
                                             region=region[self.tag],
                                             agency='TOneTour',
-                                            detailed='')
+                                            detail=self.data_dic['detail'].pop())
             travel_date = Travel_Date.objects.create(departure_date=self.data_dic['departure_date'].pop(),
                                       price=self.data_dic['date_price'].pop(),
                                       status=self.data_dic['status'].pop(),

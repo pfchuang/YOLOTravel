@@ -40,11 +40,17 @@ class Gabriel(object):
             self.data_dic['date_price'] = tmp_price
             browser.get(tmp_link)
             detail = (browser.find_elements_by_xpath("(//div[@class='note'])"))
+            keyword = (browser.find_elements_by_tag_name('h6'))[:-1]
+            key = []
             day_count = 0
             detail_dic = {}
             for item in detail[:-1]:
                 day_count += 1
                 detail_dic[("DAY " + str(day_count))] = item.text
+            for item in keyword:
+                if(item.text != ''):
+                    key.append(item.text)
+                    detail_dic['keywords'] = key
             self.data_dic['detail'] = detail_dic
             self.items.append(self.data_dic)
             self.resetDataDic()

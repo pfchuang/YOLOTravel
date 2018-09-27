@@ -11,7 +11,7 @@ class T1tour(object):
         self.url = 'http://www.t1tour.com.tw/tour?country=' + tag_code + '&sdate='+str(now)+'&edate=12%2F31%2F2018'
         self.code = tag_code
         # self.count = 0
-        self.data_dic = {'title':[], 'price':[], 'departure_date':[], 'link':[], 'status':[], 'date_price': [], 'detailed': []}
+        self.data_dic = {'title':[], 'price':[], 'departure_date':[], 'link':[], 'status':[], 'date_price': [], 'detail': []}
 
     def getPage(self):
         res = requests.get(self.url)
@@ -23,13 +23,29 @@ class T1tour(object):
     def crawl(self, page):
         res = requests.get(self.url + '&cursor=' + str(page))
         html = BeautifulSoup(res.text, 'lxml')
-
+        
         for item in html.find_all('tr'):
             for data in item.find_all(has_title):
                 tmp_title = data.contents[0]
                 tmp_link = "http://www.t1tour.com.tw" + data['href']
                 self.data_dic['title'].append(tmp_title)
                 self.data_dic['link'].append(tmp_link)
+                detail_res = requests.get(tmp_link)
+                soup = BeautifulSoup(detail_res.text, 'lxml')
+                detail = soup.select("div[class='dailyTitle']")
+                keyword = soup.select("div[class='editorTxt col-sm-12']")
+                key = []
+                day_count = 0
+                detail_dic = {}
+
+                for schedule in detail:
+                    day_count += 1
+                    detail_dic[("DAY " + str(day_count))] = schedule.text.replace('\n', '')
+                for word in keyword:
+                    if(word.find('h4')!=None):
+                        key.append(word.find('h4').text.replace('\xa0',' '))
+                        detail_dic['keywords'] = key
+                self.data_dic['detail'].append(detail_dic)
             for data in item.select("[class='t-price']"):
                 tmp_price = data.contents[0]
                 self.data_dic['price'].append(tmp_price)
@@ -45,9 +61,10 @@ class T1tour(object):
             for data in item.select("[class='t-status']"):
                 tmp_status = data.contents[0].text
                 self.data_dic['status'].append(tmp_status)
-        setting = Setting()
-        browser = setting.settingDriver()
-        browser.get(self.url)
+        
+        # setting = Setting()
+        # browser = setting.settingDriver()
+        # browser.get(self.url)
         
 
         t1tour = Deposit(self.code, self.data_dic)

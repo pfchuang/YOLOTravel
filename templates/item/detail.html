@@ -11,6 +11,10 @@
         background-color: plum;
         padding: 15px;
     }
+    p2 {
+        background-color: rgb(160, 171, 221);
+        padding: 15px;
+    }
     a {
         color:deepskyblue;
     }
@@ -18,11 +22,21 @@
 </head>
 <body>
     <a href="{{ travel_dates.link }}">{{ data.title }}</a><br>
+    
     <b>
     <br>
     {% for key, value in detail.items %}
-        <p1>{{ key }}</p1><p>{{ value }}</p>
-        
+        {% if key != 'keywords' %}
+            <p1>{{ key }}</p1><p>{{ value }}</p>
+        {% endif %}
+        {% if key == 'keywords' %}
+            <p2>{{ key }}</p2>
+            {% for item in value %}
+                <ul style="list-style-type:disc">
+                    <li>{{ item }}</li>
+                </ul>
+            {% endfor %}
+        {% endif %}
     {% endfor %}
     </b>
 </body>
