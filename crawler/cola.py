@@ -6,17 +6,19 @@ import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from deposit.cola import Deposit
+from crawler.setting import Setting
 
 class Cola(object):
     def __init__(self, tag_code):
         now = datetime.datetime.now().strftime("%Y-%m-%d").replace('-', '/')
-        self.url = 'https://www.colatour.com.tw/C10A_TourSell/C10A02_TourQuery.aspx?DepartureCity=*&RegionCode=' + tag_code + '&TourType=Tour&StartTourDate=' + now + '&EndTourDate=2018/08/31'
+        self.url = 'https://www.colatour.com.tw/C10A_TourSell/C10A02_TourQuery.aspx?DepartureCity=*&RegionCode=' + tag_code + '&TourType=Tour&StartTourDate=' + now + '&EndTourDate=2018/10/31'
         self.code = tag_code
         self.count = 0
         self.data_dic = {'title':[], 'price':[], 'departure_date':[], 'link':[], 'status':[], 'date_price': [], 'detail': []}
 
     def crawl(self):
-        browser = webdriver.PhantomJS()
+        setting = Setting()
+        browser = setting.settingDriver()
         browser.get(self.url)
         # res = requests.get(self.url)
         html = BeautifulSoup(browser.page_source, 'lxml')
@@ -31,7 +33,23 @@ class Cola(object):
                 for item in data.select("[class='TourName']"):
                     # pprint(item.text)
                     self.data_dic['title'].append(item.text)
-                    self.data_dic['link'].append("https://www.colatour.com.tw/"+str(item['href']))
+                    tmp_link = "https://www.colatour.com.tw/"+str(item['href'])
+                    self.data_dic['link'].append(tmp_link)
+                    browser.get(tmp_link)
+                    detail = browser.find_elements_by_xpath("//td[@style='background-color: #D1E6FE; color: blue']")
+                    keyword = (browser.find_element_by_tag_name("routecontent").find_element_by_tag_name("blockquote").text.split("\n\n"))
+                    key = []
+                    day_count = 0
+                    detail_dic = {}
+                    for detail_data in detail:
+                        day_count += 1
+                        detail_dic[("DAY " + str(day_count))] = detail_data.text
+                    for word in keyword:
+                        if(word != ''):
+                            key.append(word.replace('\n', ''))
+                            detail_dic['keywords'] = key
+                    browser.back()
+                    self.data_dic['detail'].append(detail_dic)
             for item in html.select("[class='GridItem']"):
                 tmp_data = item.text.replace("\n", "").replace("\r", "").replace("  ", "")
                 datas.append(tmp_data)
