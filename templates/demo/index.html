@@ -1,32 +1,83 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html>
-<head>
-<title>YOLO Travel</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/icon" href="{% static "favicon.ico" %}"/>
-<link rel="shortcut icon" type="image/icon" href="{% static "favicon.ico" %}"/>
-<link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
-</style>
-<body class="w3-light-grey">
+  <head>
+    <title>YOLO Travel</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/icon" href="{% static "favicon.ico" %}"/>
+    <link rel="shortcut icon" type="image/icon" href="{% static "favicon.ico" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .topnav {
+      overflow: hidden;
+      background-color: #333;
+      }
+
+      .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      }
+
+      .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+      }
+
+      .topnav a.active {
+      background-color: #d10191;
+      color: white;
+      }
+    </style>
+
+  </head>
+
+
+  <body class="w3-light-grey">
 
 <!-- Navigation Bar -->
-<div class="w3-bar w3-white w3-large">
-  <a href="#" class="w3-bar-item w3-mobile"><img src="{% static "yolotitle.PNG" %}"  width="110" height="40"></a>
+  <!--<div class="w3-bar w3-white w3-large">
+<a href="#" class="w3-bar-item w3-mobile"><img src="{% static "yolotitle.PNG" %}"  width="110" height="40"></a>
   <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Destination</a>
   <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>-->
 
-</div>
+  <div class="topnav">
+
+    <a class="navbar-brand" href="#"><img src="{% static "yolotitle.PNG" %}"  width="110" height="40" align="center" valign="center"></a>
+    <a class="active" href="#home">Home</a>
+    <a href="#rooms">Destination</a></li>
+    <a href="#about">About</a></li>
+    <a href="#contact">Contact</a></li>
+    <form class="navbar-form navbar-right" action="/action_page.php">
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+
 <!-- Header -->
 <header class="w3-display-container w3-content" style="max-width:1500px;">
   <img class="w3-image" src="{% static "JTbackground.jpg" %}" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
+  
   <div class="w3-display-left w3-padding w3-col l6 m8">
     <div class="w3-container w3-red">
       <h2>Find Trip</h2>
@@ -82,34 +133,34 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
   <div class="w3-row-padding w3-padding-16">
     <div class="w3-third w3-margin-bottom">
-      <img src="https://www.chictravel.com.gr/wp-content/uploads/2018/02/Colmar-Petite-Venise%C2%A9Istock.jpg" alt="Europe" style="width:100%" height="300"><!--width="490" height="300> -->
-      <div class="w3-container w3-pale-red" style="height:300px";>
+      <img src="https://www.chictravel.com.gr/wp-content/uploads/2018/02/Colmar-Petite-Venise%C2%A9Istock.jpg" alt="Europe" style="width:100%" ><!--width="490" height="300> -->
+      <div class="w3-container w3-white" ;>
         <h3>Europe</h3>
-        <h6 class="w3-opacity">漫遊歐洲</h6>
+        <h5 class="w3-opacity">漫遊歐洲</h5>
         <a href="{% url "Item:travel_data" "Europe" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
-      <img src="https://www.liontravel.com/comm/2fit/hotsale/american_gotravel/images/NYC1.JPG" alt="America" style="width:100%" height="300">
-      <div class="w3-container w3-pale-red" style="height:300px">
+      <img src="http://www.canopeia.com/wp-content/uploads/2017/08/NYC-Times-Square-Busy-1.jpg" alt="America" style="width:100%" >
+      <div class="w3-container w3-white" >
         <h3>America</h3>
-        <h6 class="w3-opacity">驚嘆美洲</h6>
+        <h5 class="w3-opacity">驚嘆美洲</h5>
         <a href="{% url "Item:travel_data" "America" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
-      <img src="http://iabroad.com.tw/file/2017/05/%E7%B4%90%E8%A5%BF%E8%98%AD%E9%A2%A8%E6%99%AFJPG.jpg" alt="Oceania" style="width:100%" height="300">
-      <div class="w3-container w3-pale-red" style="height:300px">
-        <h3>Oceania</h3>
-        <h6 class="w3-opacity">100%純淨的大洋洲(紐、澳)</h6>
-        <a href="{% url "Item:travel_data" "Oceania" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
+      <img src="https://i.pinimg.com/originals/01/f3/ab/01f3ab19e965d5d633db20488de5d592.jpg" alt="NorthEastAsia" style="width:100%" >
+      <div class="w3-container w3-white" >
+        <h3>North East Asia</h3>
+        <h5 class="w3-opacity">無限的想像與冒險-東北亞</h5>
+        <a href="{% url "Item:travel_data" "NorthEastAsia" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
-      <img src="http://www.caneis.com.tw/link/info/inden/inden/images/inden-001-1.jpg" alt="MiddleAsia" style="width:100%">
+      <img src="http://s3.msl.sina.cn/02d309075fc51000/02d309092a052000.jpeg" alt="MiddleAsia" style="width:100%">
       <div class="w3-container w3-white">
         <h3>Middle Asia</h3>
-        <h6 class="w3-opacity">探索神祕的國度-中、西、南亞</h6>
+        <h5 class="w3-opacity">探索神祕的國度-中、西、南亞</h5>
         <a href="{% url "Item:travel_data" "MiddleAsia" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
@@ -117,32 +168,40 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <img src="http://www.mediasphere.com.tw/images/article/big/%E7%9C%8B%E5%B1%95%E8%A6%BD%EF%BC%8C%E8%81%BD%E8%AC%9B%E5%BA%A7%E8%AA%8D%E8%AD%98%E5%9F%83%E5%8F%8A%EF%BC%8C%E7%8F%BE%E6%AD%A3%E5%85%8D%E8%B2%BB%E5%A0%B1%E5%90%8D%E4%B8%AD%E3%80%82%EF%BC%88%E5%9C%96%E7%89%87%E6%8F%90%E4%BE%9B%EF%BC%9A%E5%8F%8B%E6%B3%B0%E6%97%85%E9%81%8A%EF%BC%89.jpg" alt="Africa" style="width:100%">
       <div class="w3-container w3-white">
         <h3>Africa</h3>
-        <h6 class="w3-opacity">狂野非洲</h6>
+        <h5 class="w3-opacity">狂野非洲</h5>
         <a href="{% url "Item:travel_data" "Africa" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
-      <img src="http://saras-media.com/wp-content/uploads/2017/01/shutterstock_414728179.jpg" alt="NorthEastAsia" width="490" height="300">
-      <div class="w3-container w3-white">
-        <h3>North East Asia</h3>
-        <h6 class="w3-opacity">無限的想像與冒險-東北亞</h6>
-        <a href="{% url "Item:travel_data" "NorthEastAsia" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
+      <img src="http://iabroad.com.tw/file/2017/05/%E7%B4%90%E8%A5%BF%E8%98%AD%E9%A2%A8%E6%99%AFJPG.jpg" alt="Oceania" style="width:100%" >
+      <div class="w3-container w3-white" >
+        <h3>Oceania</h3>
+        <h5 class="w3-opacity">100%純淨的大洋洲(紐、澳)</h5>
+        <a href="{% url "Item:travel_data" "Oceania" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
-      <img src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_864,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/phu1gln7aa5gdoftdya2/%E5%8C%85%E8%BB%8A%E9%81%8A%E8%A6%BD%E5%85%AB%E9%81%94%E5%B6%BA%E9%95%B7%E5%9F%8E%E5%8D%8A%E6%97%A5%E9%81%8A%E8%A6%BD.jpg" alt="China" style="width:100%">
+      <img src="http://spider.nosdn.127.net/28ea124411625cd9312d899af7962f13.jpeg" alt="China" style="width:100%">
       <div class="w3-container w3-white">
         <h3>China</h3>
-        <h6 class="w3-opacity">絕色風情-大陸、港、澳</h6>
+        <h5 class="w3-opacity">絕色風情-大陸、港、澳</h5>
         <a href="{% url "Item:travel_data" "China" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
-      <img src="http://www.52travel.tw/wp-content/uploads/2016/05/ma.jpg" alt="SouthEastAsia" style="width:100%">
+      <img src="http://5b0988e595225.cdn.sohucs.com/images/20180704/d294a40787ed45909de85e6d49820fec.jpeg" alt="SouthEastAsia" style="width:100%">
       <div class="w3-container w3-white">
         <h3>South East Asia</h3>
-        <h6 class="w3-opacity">悠遊東南亞</h6>
+        <h5 class="w3-opacity">悠遊東南亞</h5>
         <a href="{% url "Item:travel_data" "SouthEastAsia" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="http://www.gittawitzel.com/wp-content/uploads/2018/01/TAIPEI_TAIWAN_TRAVEL_PHOTODIARY_GITTA_WITZEL-2-1080x720.jpg" alt="Taiwan" style="width:100%">
+      <div class="w3-container w3-white">
+        <h3>Taiwan</h3>
+        <h5 class="w3-opacity">國內盡情遊!</h5>
+        <a href="{% url "Item:travel_data" "Taiwan" %}"><button class="w3-button w3-block w3-black w3-margin-bottom">Let's go</button></a>
       </div>
     </div>
   </div>
