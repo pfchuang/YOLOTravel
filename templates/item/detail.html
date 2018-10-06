@@ -18,11 +18,12 @@
     a {
         color:deepskyblue;
     }
+
 </style>
 </head>
 <body>
     <a href="{{ travel_date.link }}">{{ data.title }}</a><br>
-    <b>
+   
     <br>
     {% for key, value in detail.items %}
         {% if key != 'keywords' %}
@@ -38,19 +39,23 @@
         {% endif %}
     {% endfor %}
 
+    <div>
     <h1>相似行程</h1>
         {% for item in similar_data %}
             {% if item.id != data.id %}
-            <a href="{{ item.link }}"> <p>{{ item.title }}</p></a><br>
+            <div>
+                <a href="{{ item.link }}"> <p>{{ item.title }}</p></a>
+            </div>
             {% endif %}
         {% endfor %}
-    </b>
+    </div>
+
     <div>
-        <p>出發日期
+ 
+        <h5>出發日期</h5>
         {% for travel in travel_dates %}
             <a href="{{ travel.link }}"> {{ travel.departure_date|date:"m/d/Y" }} </a>
-        {% endfor %}
-        </p>
+        {% endfor %}    
     </div>
 </body>
 </html>
