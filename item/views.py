@@ -7,6 +7,8 @@ from functools import reduce
 import operator
 from django.db.models import Q
 import ast
+import jieba
+import re
 
 # Create your views here.
 
@@ -45,5 +47,17 @@ def search_result(request):
 def data_detail(request, id):
     data = Itinerary.objects.get(id = id)
     detail = ast.literal_eval(data.detail)
+    region = data.region
+    clean_title = re.sub("[〈〉～《》▪￭◆．等日無天 A-Za-z0-9「」ｘ『』•【】\x08;\s+\.\!\<>/_,$%^*(+\"\'+——！，\[\]Xx｜。１２３４５６７８９？、~@#￥%……&*（）＋；〜－)®：●♥★™🏆‧-]",
+        "", data.title)
+    cut_title = jieba.lcut(clean_title)
+    print(type(cut_title))
     travel_dates = Travel_Date.objects.get(itinerary=data)
+    condition = reduce(operator.or_, (Q(detail__icontains = x) for x in cut_title))
+    similar_data = Itinerary.objects.filter(condition)
+    if len(similar_data) >0 and len(similar_data) >= 5:
+        similar_data = reverse(similar_data)[:5]
+    elif len(similar_data) == 0:
+        similar_data.append("敬請期待")
+
     return render(request, 'item/detail.html', locals())

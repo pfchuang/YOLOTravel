@@ -30,7 +30,6 @@ class Deposit(object):
                          agency='Lion',
                          detail=self.itinerary['detail'])
 
-        print(item)
         for i in range(len(self.itinerary['departure_date'])):
             travel_date = Travel_Date.objects.create(departure_date=self.itinerary['departure_date'][i],
                                       price=self.itinerary['date_price'][i],

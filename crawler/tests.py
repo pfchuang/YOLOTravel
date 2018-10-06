@@ -13,7 +13,7 @@ def phoenix_test():
         phoenix.crawl()
 
 def lion_test():
-    region = ['--1', '--2', '--3', '--4', '--5', '--6', '--7']
+    region = ['--1']
     while region:
         tag_code = region.pop()
         lion = Lion(tag_code)

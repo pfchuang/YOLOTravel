@@ -38,6 +38,13 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
+
+    <h1>相似行程</h1>
+        {% for item in similar_data %}
+            {% if item.id != data.id %}
+            <a href="{{ item.link }}"> <p>{{ item.title }}</p></a><br>
+            {% endif %}
+        {% endfor %}
     </b>
 </body>
 </html>
