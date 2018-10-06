@@ -47,7 +47,6 @@ class Lion(object):
             self.resetItinerary() #reset itinerary to empty
             print('Crawling and deposit {} data from {}'.format(self.count, self.code))
         while items:
-            tmp_itin = items.pop()
             lion = Deposit(self.code, items.pop())
             lion.run()
             
