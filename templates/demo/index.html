@@ -77,44 +77,103 @@
 <!-- Header -->
 <header class="w3-display-container w3-content" style="max-width:1500px;">
   <img class="w3-image" src="{% static "JTbackground.jpg" %}" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
-  
-  <div class="w3-display-left w3-padding w3-col l6 m8">
-    <div class="w3-container w3-red">
-      <h2>Find Trip</h2>
+
+  <div class="w3-row">
+    <div class="w3-display-left w3-padding w3-col l6 m8">
+      <div class="w3-container w3-red">
+        <h2>Find Trip</h2>
+      </div>
+      <div class="w3-container w3-white w3-padding-16">
+        <form action="{% url "Item:search_travel_data" %}" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px;">
+            <div class="w3-half w3-margin-bottom">
+              <label><i class="fa fa-calendar-o"></i> Start Date</label>
+              <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="StartDate" required>
+            </div>
+            <div class="w3-half">
+              <label><i class="fa fa-calendar-o"></i> End Date</label>
+              <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="EndDate" required>
+            </div>
+          </div>
+          <div class="w3-row-padding" style="margin:8px -16px;">
+            <div class="w3-half w3-margin-bottom">
+              <label><i class="fa fa-male"></i> Destination </label>
+              <div>
+              <select name="region">
+                <option value="NorthEastAsia">東北亞</option>
+                <option value="SouthEastAsia">東南亞</option>
+                <option value="China">大陸、港、澳</option>
+                <option value="Europe">歐洲</option>
+                <option value="MiddleAsia">中亞</option>
+                <option value="America">美洲</option>
+                <option value="Africa">非洲</option>
+                <option value="Oceania">大洋洲</option>
+              </select>
+            </div>
+            </div>
+            <div class="w3-half">
+              <label><i class="fa fa-child"></i> Key Words</label>
+            <input class="w3-input w3-border" type="text" name="KeyWords" placeholder="若要搜尋多個關鍵字 請以空白分隔">
+            </div>
+          </div>
+          <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-search w3-margin-right"></i> Search availability</button>
+        </form>
+      </div>
     </div>
-    <div class="w3-container w3-white w3-padding-16">
-      <form action="{% url "Item:search_travel_data" %}" target="_blank">
-        <div class="w3-row-padding" style="margin:0 -16px;">
-          <div class="w3-half w3-margin-bottom"><i class="fa fa-calendar-o"></i> Start Date<input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="StartDate" required>
+
+    <div class="w3-display-right w3-padding w3-col l6 m8">
+      <div class="w3-container w3-red">
+        <h2>Current Recommendation - U.S.A</h2>
+      </div>
+      <div class="w3-container w3-black w3-padding-16">
+      <!--div class="container"-->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="https://media.timeout.com/images/100541963/image.jpg" alt="Los Angeles" style="width:100%;">
+              <div class="carousel-caption">
+                <h3>Los Angeles</h3>
+                <p>LA is always so much fun!</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <img src="http://www.allthefeelsphotography.com/wp-content/uploads/2016/07/ktesession_0252.jpg" alt="Chicago" style="width:100%;">
+              <div class="carousel-caption">
+                <h3>Chicago</h3>
+                <p>Thank you, Chicago!</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <img src="https://twt-thumbs.washtimes.com/media/image/2015/11/05/liberty2_s2048x1374.jpg?f9a90472b40c7eefb6dc4d3ee51f1de74d2d15a8" alt="New York" style="width:100%;">
+              <div class="carousel-caption">
+                <h3>New York</h3>
+                <p>We love the Big Apple!</p>
+              </div>
+            </div>
+
           </div>
-          <div class="w3-half">
-            <label><i class="fa fa-calendar-o"></i> End Date</label>
-            <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="EndDate" required>
-          </div>
+
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <div class="w3-row-padding" style="margin:8px -16px;">
-          <div class="w3-half w3-margin-bottom">
-            <label><i class="fa fa-male"></i> Destination </label>
-            <div>
-            <select name="region">
-              <option value="NorthEastAsia">東北亞</option>
-              <option value="SouthEastAsia">東南亞</option>
-              <option value="China">大陸、港、澳</option>
-              <option value="Europe">歐洲</option>
-              <option value="MiddleAsia">中亞</option>
-              <option value="America">美洲</option>
-              <option value="Africa">非洲</option>
-              <option value="Oceania">大洋洲</option>
-            </select>
-          </div>
-          </div>
-          <div class="w3-half">
-            <label><i class="fa fa-child"></i> Key Words</label>
-          <input class="w3-input w3-border" type="text" name="KeyWords" placeholder="若要搜尋多個關鍵字 請以空白分隔">
-          </div>
-        </div>
-        <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-search w3-margin-right"></i> Search availability</button>
-      </form>
+      </div>
     </div>
   </div>
 </header>
