@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 table {
     font-family: arial, sans-serif;
@@ -23,10 +25,20 @@ th {
 tr:nth-child(even) {
     background-color: rgb(0, 209, 255, 0.4);
 }
+
+.regionName {
+    background-color: rgb(204, 255, 255);
+}
+
+
 </style>
 </head>
 <body>
-  <h1>{{region}}</h1>
+  <div class = "regionName">
+    <br>
+    <h1 align="center"><strong>{{region}}</strong></h1>
+    </br>
+  </div>
   <p align="right">總共有{{datas.count}}筆資料</p>
     <table>
       <tr>
