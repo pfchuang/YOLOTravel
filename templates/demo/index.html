@@ -45,6 +45,16 @@
       background-color: #d10191;
       color: white;
       }
+
+      .LOGO {
+      background-image: url({% static "JTbackground.jpg" %});
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% auto;
+      height: 150px;
+      }
+
+      }
     </style>
 
   </head>
@@ -76,10 +86,12 @@
 
 <!-- Header -->
 <header class="w3-display-container w3-content" style="max-width:1500px;">
-  <img class="w3-image" src="{% static "JTbackground.jpg" %}" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
+  <!--img class="w3-image" src="{% static "JTbackground.jpg" %}" alt="The Hotel" style="min-width:1000px" width="1500" height="800">-->
+  <div class="searchRecommendation">
+    <div class=" w3-padding col-xs-12 col-sm-6 col-md-6">
+      <div class="LOGO">
 
-  <div class="w3-row">
-    <div class="w3-display-left w3-padding w3-col l6 m8">
+      </div>
       <div class="w3-container w3-red">
         <h2>Find Trip</h2>
       </div>
@@ -121,7 +133,7 @@
       </div>
     </div>
 
-    <div class="w3-display-right w3-padding w3-col l6 m8">
+    <div class=" w3-padding col-xs-12 col-sm-6 col-md-6">
       <div class="w3-container w3-red">
         <h2>Current Recommendation - U.S.A</h2>
       </div>
