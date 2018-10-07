@@ -16,14 +16,15 @@
         padding: 15px;
     }
     a {
-        color:deepskyblue;
+        color:purple;
+
     }
 
 </style>
 </head>
 <body>
-    <a href="{{ travel_date.link }}">{{ data.title }}</a><br>
-   
+    <a href="{{ travel_date.link }}"><h3 align="center"><strong>{{ data.title }}</strong></h3></a><br>
+
     <br>
     {% for key, value in detail.items %}
         {% if key != 'keywords' %}
@@ -51,11 +52,11 @@
     </div>
 
     <div>
- 
+
         <h5>出發日期</h5>
         {% for travel in travel_dates %}
             <a href="{{ travel.link }}"> {{ travel.departure_date|date:"m/d/Y" }} </a>
-        {% endfor %}    
+        {% endfor %}
     </div>
 </body>
 </html>
