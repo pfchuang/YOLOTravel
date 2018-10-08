@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-    p {
-        /* border-left: 6px solid plum; */
-        background-color: pink;
-        padding: 15px;
-    }
-    p1 {
-        background-color: plum;
-        padding: 15px;
-    }
-    p2 {
-        background-color: rgb(160, 171, 221);
-        padding: 15px;
-    }
-    a {
-        color:deepskyblue;
-    }
+  <title>YOLO Travel</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+      p {
+          /* border-left: 6px solid plum; */
+          background-color: pink;
+          padding: 15px;
+      }
+      p1 {
+          background-color: plum;
+          padding: 15px;
+      }
+      p2 {
+          background-color: rgb(160, 171, 221);
+          padding: 15px;
+      }
+      a {
+          color:purple;
+      }
 
-</style>
+  </style>
 </head>
 <body>
-    <a href="{{ travel_date.link }}">{{ data.title }}</a><br>
-   
+    <a href="{{ travel_date.link }}"><h3 align="center"><strong>{{ data.title }}</strong></h3></a><br>
+
     <br>
     {% for key, value in detail.items %}
         {% if key != 'keywords' %}
@@ -51,11 +60,11 @@
     </div>
 
     <div>
- 
+
         <h5>出發日期</h5>
         {% for travel in travel_dates %}
             <a href="{{ travel.link }}"> {{ travel.departure_date|date:"m/d/Y" }} </a>
-        {% endfor %}    
+        {% endfor %}
     </div>
 </body>
 </html>
