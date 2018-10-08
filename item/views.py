@@ -9,6 +9,7 @@ from django.db.models import Q
 import ast
 import jieba
 import re
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 # Create your views here.
 
@@ -19,15 +20,23 @@ def index(request):
 
 def get_travel_data(request, region_selected=None):
     datas = None
+    contacts = None
+    datas = Itinerary.objects.filter(region = region_selected).order_by('-id')
+    paginator = Paginator(datas, 25) 
+    page = request.GET.get('page')
     try:
-        datas = Itinerary.objects.filter(region = region_selected).order_by('-id')
-        travel_dates = Travel_Date.objects.filter(itinerary__in=datas)
-    except Exception as e:
-        print(e)
-    return render(request, 'item/region.html', {'datas': datas, 'region':region_selected, 'travel_dates': travel_dates})
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        contacts = paginator.page(1)
+    except EmptyPage:
+        contacts = paginator.page(paginator.num_pages)
+    travel_dates = Travel_Date.objects.filter(itinerary__in=contacts)
+ 
+    return render(request, 'item/region.html', {'contacts':contacts,'datas': datas, 'region':region_selected, 'travel_dates': travel_dates})
 
 def search_result(request):
     datas=None
+    contacts = None
     region = request.GET.get("region")
     startDate = request.GET.get("StartDate")
     endDate = request.GET.get("EndDate")
@@ -35,14 +44,20 @@ def search_result(request):
     search = request.GET.get("KeyWords").split(' ')
     keyWords = reduce(operator.or_, (Q(title__icontains=x) for x in search))
 
+    
+    datas = Itinerary.objects.filter(Q(region__contains = region)&
+                                        Q(travel_date__departure_date__range=(startDate, endDate))&
+                                        Q(keyWords)).order_by('-id').distinct()
+    paginator = Paginator(datas, 25) 
+    page = request.GET.get('page')
     try:
-        datas = Itinerary.objects.filter(Q(region__contains = region)&
-                                         Q(travel_date__departure_date__range=(startDate, endDate))&
-                                         Q(keyWords)).order_by('-id').distinct()
-        travel_dates = Travel_Date.objects.filter(itinerary__in=datas)
-    except Exception as e:
-        print(e)
-    return render(request, 'item/region.html', {'datas': datas, 'travel_dates': travel_dates})
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        contacts = paginator.page(1)
+    except EmptyPage:
+        contacts = paginator.page(paginator.num_pages)
+    travel_dates = Travel_Date.objects.filter(itinerary__in=contacts)
+    return render(request, 'item/region.html', {'datas':datas, 'contacts': contacts, 'travel_dates': travel_dates})
 
 def data_detail(request, id):
     data = Itinerary.objects.get(id = id)
