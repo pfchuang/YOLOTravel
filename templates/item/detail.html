@@ -1,15 +1,20 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
-<head>
-  <title>YOLO Travel</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <head>
+    <title>YOLO Travel</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/icon" href="{% static "favicon.ico" %}"/>
+    <link rel="shortcut icon" type="image/icon" href="{% static "favicon.ico" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <style>
       p {
           /* border-left: 6px solid plum; */
@@ -25,19 +30,84 @@
           padding: 15px;
       }
       a {
-          color:purple;
+          color:black;
+      }
+
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 90%;
+          margin: 50px;
+      }
+
+      td{
+          border: 1px solid #dddddd;
+          text-align: center;
+          padding: 8px;
+      }
+
+      th {
+          border: 1px solid #dddddd;
+          text-align: middle;
+          padding: 8px;
+      }
+
+      tr:nth-child(even) {
+          background-color: rgb(0, 209, 255, 0.4);
+      }
+
+      .regionName {
+          background-color: rgb(204, 255, 255);
       }
 
   </style>
 </head>
+
 <body>
-    <a href="{{ travel_date.link }}"><h3 align="center"><strong>{{ data.title }}</strong></h3></a><br>
+  <br>
+  <table>
+      <tr>
+      <td>行程名稱</td>
+      <td>{{ data.title }}</td>
+      </tr>
+      <tr>
+      <td>行程網址</td>
+      <td><a href="{{ travel_date.link }}">{{ travel_date.link }}</a></td>
+      </tr>
+      <td>出發日期</td>
+      <td>
+        {% for travel in travel_dates %}
+          <a href="{{ travel.link }}"> {{ travel.departure_date|date:"m/d/Y" }} </a>
+        {% endfor %}
+      </td>
+  </table>
 
     <br>
+    <br>
+
+  <script type="text/javascript">
+      var i,j,k;
+      var rowContent="";
+      document.write("<table cellpading='2' border='1'>");
+      for (i=1;i<9;i++){
+        rowContent = "<tr>";
+        for (j=1;j<9;j++){
+          rowContent+ = "<td>"+ i + "*" + j + "=" + (i*j) + "</td>";
+      }
+      rowContent+ = "</tr>";
+      document.write(rowContent);
+    }
+    document.write("</table");
+  </script>
+
+  <table>
     {% for key, value in detail.items %}
         {% if key != 'keywords' %}
-            <p1>{{ key }}</p1><p>{{ value }}</p>
+            <p1>{{ key }}</p1>
+            <p>{{ value }}</p>
         {% endif %}
+
+
         {% if key == 'keywords' %}
             <p2>{{ key }}</p2>
             {% for item in value %}
@@ -47,6 +117,8 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
+
+  </table>
 
     <div>
     <h1>相似行程</h1>
@@ -59,12 +131,5 @@
         {% endfor %}
     </div>
 
-    <div>
-
-        <h5>出發日期</h5>
-        {% for travel in travel_dates %}
-            <a href="{{ travel.link }}"> {{ travel.departure_date|date:"m/d/Y" }} </a>
-        {% endfor %}
-    </div>
 </body>
 </html>
