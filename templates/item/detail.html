@@ -30,7 +30,8 @@
           padding: 15px;
       }
       a {
-          color:black;
+          color:#002080;
+          text-decoration:underline;
       }
 
       table {
@@ -68,7 +69,7 @@
       }
 
       td#t01{
-          border: 2px solid #ccdcff;
+          border: 2px solid #ffe6ff;
           text-align: center;
           padding: 8px;
       }
@@ -129,19 +130,27 @@
   <br>
   <table>
       <tr>
-      <td>行程名稱</td>
-      <td>{{ data.title }}</td>
+        <td>行程名稱</td>
+        <td>{{ data.title }}</td>
       </tr>
       <tr>
-      <td>行程網址</td>
-      <td><a href="{{ travel_date.link }}">{{ travel_date.link }}</a></td>
+        <td>行程網址</td>
+        <td><a href="{{ travel_date.link }}">{{ travel_date.link }}</a></td>
+      </tr>
+      <tr>
+        <td>行程價錢</td>
+        <td>
+          {% for travel in travel_dates %}
+            NT${{travel_date.price}}
+          {% endfor %}
+        </td>
       </tr>
       <td>出發日期</td>
-      <td>
-        {% for travel in travel_dates %}
-          <a href="{{ travel.link }}"> {{ travel.departure_date|date:"m/d/Y" }} </a>
-        {% endfor %}
-      </td>
+        <td>
+          {% for travel in travel_dates %}
+            <a href="{{ travel.link }}"> {{ travel.departure_date|date:"m/d/Y" }} </a>
+          {% endfor %}
+        </td>
   </table>
 
     <br>
