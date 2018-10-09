@@ -46,7 +46,6 @@ class Lion(object):
             self.itinerary['price'] = tmp_price
             self.itinerary['title'] = tmp_title[0]
             self.getDetail(tmp_link)
-            print(self.itinerary['detail'])
             items.append(self.itinerary)
             self.resetItinerary() #reset itinerary to empty
             print('Crawling {} data from {}'.format(self.count, self.code))
