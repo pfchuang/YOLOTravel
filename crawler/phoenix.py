@@ -32,9 +32,7 @@ class Phoenix(object):
         wait_list += links
         while wait_list:
             link = wait_list.pop()
-            # driver = webdriver.PhantomJS()
-            setting = Setting()
-            driver = setting.settingDriver()
+            driver = Setting.settingDriver()
             driver.get(link)
             items = driver.find_elements(By.XPATH, '//td')
             items = [item.text for item in items]
@@ -57,26 +55,3 @@ class Phoenix(object):
                 flag = False
 
             driver.quit()
-
-        # try:
-        #     driver = webdriver.PhantomJS()
-        #     driver.get(link)
-        #     items = driver.find_elements(By.XPATH, '//td')
-        #     items = [item.text for item in items]
-        #
-        #     flag = True
-        #     while flag:
-        #         self.count += 1
-        #         phoenix = phoenixDeposit(self.tag, items, link)
-        #         phoenix.run()
-        #         print('Crawling and deposit {} data from {}'.format(self.count, self.tag))
-        #         flag = False
-        #         # if len(items) > 13:
-        #         #     items = items[13:]
-        #         #     flag = True
-        #
-        # except Exception as e:
-        #     print(e)
-        #
-        # finally:
-        #     driver.quit()

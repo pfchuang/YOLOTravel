@@ -28,14 +28,14 @@ class Deposit(object):
 
         while self.data_dic['title']:
             self.count += 1
-            item = Itinerary.objects.create(title=self.data_dic['title'].pop(),
+            item = Itinerary.objects.get_or_create(title=self.data_dic['title'].pop(),
                                             price=self.data_dic['price'].pop(),
                                             region=region[self.tag],
                                             agency='Cola',
                                             detail=self.data_dic['detail'].pop())
-            travel_date = Travel_Date.objects.create(departure_date=self.data_dic['departure_date'].pop(),
+            travel_date = Travel_Date.objects.get_or_create(departure_date=self.data_dic['departure_date'].pop(),
                                       price=self.data_dic['date_price'].pop(),
                                       status=self.data_dic['status'].pop(),
                                       link=self.data_dic['link'].pop(),
-                                      itinerary=item)
+                                      itinerary=item[0])
             print('Crawling and deposit {} data from {}'.format(self.count, self.tag))

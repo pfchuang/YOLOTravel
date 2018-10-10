@@ -1,24 +1,25 @@
-import requests
 # -*- coding: UTF-8 -*-
+import requests
+import datetime
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from deposit.cola import Deposit
 from crawler.setting import Setting
 
+now = Setting.getNowDate().strftime("%Y/%m/%d")
+halfYearByNow = Setting.getHalfYearByNow().strftime("%Y/%m/%d")
+
 class Cola(object):
     def __init__(self, tag_code):
-        now = datetime.datetime.now().strftime("%Y-%m-%d").replace('-', '/')
-        self.url = 'https://www.colatour.com.tw/C10A_TourSell/C10A02_TourQuery.aspx?DepartureCity=*&RegionCode=' + tag_code + '&TourType=Tour&StartTourDate=' + now + '&EndTourDate=2018/10/31'
+        self.url = 'https://www.colatour.com.tw/C10A_TourSell/C10A02_TourQuery.aspx?DepartureCity=*&RegionCode=' + tag_code + '&TourType=Tour&StartTourDate=' + now + '&EndTourDate=' + halfYearByNow
         self.code = tag_code
         self.count = 0
         self.data_dic = {'title':[], 'price':[], 'departure_date':[], 'link':[], 'status':[], 'date_price': [], 'detail': []}
 
     def crawl(self):
-        setting = Setting()
-        browser = setting.settingDriver()
+        browser = Setting.settingDriver()
         browser.get(self.url)
         # res = requests.get(self.url)
         html = BeautifulSoup(browser.page_source, 'lxml')
@@ -33,7 +34,7 @@ class Cola(object):
                 for item in data.select("[class='TourName']"):
                     # pprint(item.text)
                     self.data_dic['title'].append(item.text)
-                    tmp_link = "https://www.colatour.com.tw/"+str(item['href'])
+                    tmp_link = "https://www.colatour.com.tw"+str(item['href'])
                     self.data_dic['link'].append(tmp_link)
                     browser.get(tmp_link)
                     detail = browser.find_elements_by_xpath("//td[@style='background-color: #D1E6FE; color: blue']")

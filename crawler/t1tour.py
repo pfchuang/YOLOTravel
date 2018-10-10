@@ -5,10 +5,12 @@ import datetime
 from selenium import webdriver
 from crawler.setting import Setting
 
+now = Setting.getNowDate().strftime("%m-%d-%Y").replace('-','%2F')
+halfYearByNow = Setting.getHalfYearByNow().strftime("%m-%d-%Y").replace('-','%2F')
+
 class T1tour(object):
     def __init__(self, tag_code):
-        now = datetime.datetime.now().strftime("%m-%d-%Y").replace('-','%2F')
-        self.url = 'http://www.t1tour.com.tw/tour?country=' + tag_code + '&sdate='+str(now)+'&edate=12%2F31%2F2018'
+        self.url = 'http://www.t1tour.com.tw/tour?country=' + tag_code + '&sdate=' + now + '&edate=' + halfYearByNow
         self.code = tag_code
         # self.count = 0
         self.data_dic = {'title':[], 'price':[], 'departure_date':[], 'link':[], 'status':[], 'date_price': [], 'detail': []}
@@ -61,11 +63,6 @@ class T1tour(object):
             for data in item.select("[class='t-status']"):
                 tmp_status = data.contents[0].text
                 self.data_dic['status'].append(tmp_status)
-        
-        # setting = Setting()
-        # browser = setting.settingDriver()
-        # browser.get(self.url)
-        
 
         t1tour = Deposit(self.code, self.data_dic)
         t1tour.run()

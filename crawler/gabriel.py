@@ -8,11 +8,13 @@ import datetime
 from deposit.gabriel import Deposit
 from crawler.setting import Setting
 
+now = Setting.getNowDate().strftime("%Y-%m-%d")
+halfYearByNow = Setting.getHalfYearByNow().strftime("%Y-%m-%d")
+
 class Gabriel(object):
     def __init__(self, tag_code):
-        now = datetime.datetime.now().strftime("%Y-%m-%d")
         self.code = tag_code
-        self.url = "http://www.gabriel.com.tw/Search?sdate=" + str(now) + "&edate=2018-12-31&country=" + tag_code
+        self.url = "http://www.gabriel.com.tw/Search?sdate=" + now + "&edate=" + halfYearByNow + "&country=" + tag_code
         self.data_dic = {'title':'', 'price':'', 'departure_date':[], 'link':[], 'status':[], 'detail':{}}
         self.items = []
         self.count = 0
@@ -21,8 +23,7 @@ class Gabriel(object):
         self.data_dic = {'title':'', 'price':'', 'departure_date':'', 'link':'', 'status':'', 'detail':{}, 'date_price':''}
 
     def content(self):
-        setting = Setting()
-        browser = setting.settingDriver()
+        browser = Setting.settingDriver()
         browser.get(self.url)
         soup = BeautifulSoup(browser.page_source, 'lxml')
         for i in range(2,len(soup.select("ul[class='cue-list']"))+2):
@@ -58,9 +59,7 @@ class Gabriel(object):
         browser.close()
 
     def crawl(self):
-        setting = Setting()
-        browser = setting.settingDriver()
-        # browser = webdriver.PhantomJS()
+        browser = Setting.settingDriver()
         browser.get(self.url)
         try:
             browser.find_element_by_xpath("//a[contains(text(),'»»')]").click()

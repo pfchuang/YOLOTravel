@@ -4,6 +4,7 @@ from crawler.cola import Cola
 from crawler.t1tour import T1tour
 from crawler.gabriel import Gabriel
 from item.models import Itinerary
+from item.models import Travel_Date
 
 def phoenix_test():
     region = ['EU', 'OO', 'FA', 'CN', 'AM', 'SM', 'SN', 'SS']
@@ -44,3 +45,4 @@ def gabriel_test():
 
 def flush_database():
     Itinerary.objects.all().delete()
+    Travel_Date.objects.all().delete()

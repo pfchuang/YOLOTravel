@@ -22,13 +22,13 @@ class Deposit(object):
             'SS': 'SouthEastAsia'
         } 
 
-        item = Itinerary.objects.create(title=self.items[1],
+        item = Itinerary.objects.get_or_create(title=self.items[1],
                                         price=self.items[6],
                                         region=region[self.tag],
                                         detail='',
                                         agency='Phoenix')
-        travel_date = Travel_Date.objects.create(departure_date=self.convertDate,
+        travel_date = Travel_Date.objects.get_or_create(departure_date=self.convertDate,
                                     price=self.items[6],
                                     status=self.items[11],
                                     link=self.link,
-                                    itinerary=item)
+                                    itinerary=item[0])

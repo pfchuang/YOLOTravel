@@ -24,16 +24,16 @@ class Deposit(object):
             '--7': 'SouthEastAsia'
         }
 
-        item = Itinerary.objects.create(title=self.itinerary['title'],
+        item = Itinerary.objects.get_or_create(title=self.itinerary['title'],
                          price=self.itinerary['price'],
                          region=region[self.tag],
                          agency='Lion',
                          detail=self.itinerary['detail'])
 
         for i in range(len(self.itinerary['departure_date'])):
-            travel_date = Travel_Date.objects.create(departure_date=self.itinerary['departure_date'][i],
+            travel_date = Travel_Date.objects.get_or_create(departure_date=self.itinerary['departure_date'][i],
                                       price=self.itinerary['date_price'][i],
                                       status=self.itinerary['status'][i],
                                       link=self.itinerary['link'][i],
-                                      itinerary=item)                                 
+                                      itinerary=item[0])                                 
                                                

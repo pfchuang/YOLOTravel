@@ -1,13 +1,20 @@
 from selenium import webdriver
 from pathlib import Path
+import datetime
 
-class Setting:
-    def getChromeOptions(self):
-        chrome_options_headless = webdriver.ChromeOptions()
-        chrome_options_headless.add_argument('--headless')
-        chrome_options_headless.add_argument('--disable-gpu')
-        return chrome_options_headless
+class Setting(object):
 
-    def settingDriver(self):
-        self.chrome_option = self.getChromeOptions()
-        return webdriver.Chrome(executable_path = str(Path.home()) + "/chromedriver", chrome_options = self.chrome_option)
+    def settingDriver():
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-gpu')
+
+        return webdriver.Chrome(executable_path = str(Path.home()) + "/chromedriver", chrome_options = chrome_options)
+
+    def getNowDate():
+        now = datetime.datetime.now()
+        return now
+
+    def getHalfYearByNow():
+        halfYearByNow = datetime.datetime.now() + datetime.timedelta(days=180)
+        return halfYearByNow

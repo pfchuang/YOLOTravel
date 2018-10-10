@@ -6,11 +6,13 @@ import datetime
 from deposit.lion import Deposit
 from selenium import webdriver
 from crawler.setting import Setting
+
+now = Setting.getNowDate().strftime("%Y-%m-%d")
+halfYearByNow = Setting.getHalfYearByNow().strftime("%Y-%m-%d")
+
 class Lion(object):
     def __init__(self, tag_code):
-        now = datetime.datetime.now().strftime("%Y-%m-%d")
-        self.url = "https://travel.liontravel.com/search?Country=TW&WebCode=B2C&TravelType=1&Page=1&PageSize=1000&DepartureID=&GoDateStart="+ now + "&GoDateEnd=2019-03-31&IsEnsureGroup=false&ArriveID=" + tag_code
-        print(self.url)
+        self.url = "https://travel.liontravel.com/search?Country=TW&WebCode=B2C&TravelType=1&Page=1&PageSize=1000&DepartureID=&GoDateStart="+ now + "&GoDateEnd=" + halfYearByNow + "&IsEnsureGroup=false&ArriveID=" + tag_code
         self.code = tag_code
         self.count = 0
         self.itinerary = {'title':'', 'price':'', 'detail':{}, 'departure_date':[],'link':[], 'status':[], 'date_price':[]}
@@ -70,8 +72,7 @@ class Lion(object):
         #     no_detail = {"notice":"此項目無行程內容"}
         #     self.itinerary['detail'] = no_detail
 
-        setting = Setting()
-        browser = setting.settingDriver()
+        browser = Setting.settingDriver()
         browser.get(link)
         try:
             browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
