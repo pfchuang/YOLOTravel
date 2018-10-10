@@ -52,7 +52,7 @@
         <div class="card-deck">
             <div class="card border-secondary mb-3">
                 <div class="card-body">
-                    <h4 class="card-title" style="font-family:Microsoft JhengHei;">{{data.title}}</h4>
+                    <h5 class="card-title" style="font-family:Microsoft JhengHei;">{{data.title}}</h5>
                     <h3><b class="badge  badge-success">NT${{data.price}}</b></h3>
 
                     {% for travel_date in travel_dates %}
@@ -61,12 +61,11 @@
                         <span type="button" class="badge badge-pill badge-primary" data-toggle="popover" data-placement="right" title="{{travel_date.status}}">
                             {{ travel_date.departure_date|date:"m/d/Y" }}
                         </span>
-                        </h5>
+                    </h5>
                     {% endif %}
                     {% endfor %}
-
-
                 </div>
+
                 <f class="container">
                     <a type="button" href="{{ data.get_travel_detail }}" class="btn btn-info">
                         Info
