@@ -27,3 +27,9 @@ class Travel_Date(models.Model):
     price = models.CharField(max_length=6)
     created_at = models.DateTimeField(auto_now_add=True)
     itinerary = models.ForeignKey(Itinerary, on_delete=models.CASCADE)
+
+class TopWord(models.Model):
+    word = models.CharField(max_length=128)
+    count = models.IntegerField()
+    year = models.IntegerField()
+    month = models.IntegerField()

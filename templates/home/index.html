@@ -154,7 +154,7 @@
 
     <div class=" w3-padding col-xs-12 col-sm-6 col-md-6">
       <div class="w3-container w3-red">
-        <h2>Current Recommendation - U.S.A</h2>
+        <h2>Hot Search Keywords</h2>
       </div>
       <div class="w3-container w3-black w3-padding-16">
       <!--div class="container"-->
@@ -165,33 +165,43 @@
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
           </ol>
-
+          
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item active">
               <img src="https://media.timeout.com/images/100541963/image.jpg" alt="Los Angeles" style="width:100%;">
-              <div class="carousel-caption">
-                <h3>Los Angeles</h3>
-                <p>LA is always so much fun!</p>
+                <div class="carousel-caption">
+                  <h3>10月</h3>
+                  {% for top_word in top_words %}
+                    {% if top_word.month == 10 %}
+                    <a type="button" href="region/search/keyword/?KeyWords={{ top_word.word }}" class="btn btn-outline-info" name="KeyWords">{{ top_word.word }}</a>
+                    {% endif %}
+                  {% endfor %}
               </div>
             </div>
-
+            
             <div class="item">
-              <img src="http://www.allthefeelsphotography.com/wp-content/uploads/2016/07/ktesession_0252.jpg" alt="Chicago" style="width:100%;">
+                <img src="http://www.allthefeelsphotography.com/wp-content/uploads/2016/07/ktesession_0252.jpg" alt="Chicago" style="width:100%;">
               <div class="carousel-caption">
-                <h3>Chicago</h3>
-                <p>Thank you, Chicago!</p>
+                <h3>11月</h3>
+                  {% for top_word in top_words %}
+                    {% if top_word.month == 11 %}
+                    <a type="button" href="region/search/keyword/?KeyWords={{ top_word.word }}" class="btn btn-outline-info" name="KeyWords">{{ top_word.word }}</a>
+                    {% endif %}
+                  {% endfor %}
               </div>
             </div>
-
             <div class="item">
-              <img src="https://twt-thumbs.washtimes.com/media/image/2015/11/05/liberty2_s2048x1374.jpg?f9a90472b40c7eefb6dc4d3ee51f1de74d2d15a8" alt="New York" style="width:100%;">
+                <img src="https://twt-thumbs.washtimes.com/media/image/2015/11/05/liberty2_s2048x1374.jpg?f9a90472b40c7eefb6dc4d3ee51f1de74d2d15a8" alt="New York" style="width:100%;">
               <div class="carousel-caption">
-                <h3>New York</h3>
-                <p>We love the Big Apple!</p>
+                <h3>12月</h3>
+                  {% for top_word in top_words %}
+                    {% if top_word.month == 12 %}
+                    <a type="button" href="region/search/keyword/?KeyWords={{ top_word.word }}" class="btn btn-outline-info">{{ top_word.word }}</a>
+                    {% endif %}
+                  {% endfor %}
               </div>
             </div>
-
           </div>
 
           <!-- Left and right controls -->

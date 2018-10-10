@@ -14,7 +14,6 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Create your views here.
 
 def index(request):
-
     response = {}
     return render(request, 'item/index.html', response)
 
@@ -77,3 +76,20 @@ def data_detail(request, id):
     elif len(similar_data) == 0:
         similar_data = ["敬請期待"]
     return render(request, 'item/detail.html', locals())
+
+def keyword_result(request):
+    datas=None
+    contacts = None
+    search = request.GET.get("KeyWords")
+    keyWords = reduce(operator.or_, (Q(title__icontains=x) for x in search))
+    datas = Itinerary.objects.filter(Q(keyWords))
+    paginator = Paginator(datas, 25) 
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        contacts = paginator.page(1)
+    except EmptyPage:
+        contacts = paginator.page(paginator.num_pages)
+    travel_dates = Travel_Date.objects.filter(itinerary__in=contacts)
+    return render(request, 'item/keyword.html', {'datas':datas, 'contacts': contacts, 'travel_dates': travel_dates, 'KeyWord': search})
