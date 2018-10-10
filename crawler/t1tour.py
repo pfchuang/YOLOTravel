@@ -44,7 +44,7 @@ class T1tour(object):
                 for word in keyword:
                     if(word.find('h4')!=None):
                         key.append(word.find('h4').text.replace('\xa0',' '))
-                        detail_dic['keywords'] = key
+                        detail_dic['Keywords'] = key
                 self.data_dic['detail'].append(detail_dic)
             for data in item.select("[class='t-price']"):
                 tmp_price = data.contents[0]
