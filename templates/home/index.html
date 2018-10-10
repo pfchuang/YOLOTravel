@@ -23,9 +23,12 @@
       }
 
       #topnav {
-
       overflow: hidden;
       background-color: #333;
+      width: 100%;
+      position:fixed; /*固定位置定位*/
+      top:0; /*距離上方 0 像素*/
+      z-index:1; /*重疊時會在其他元素之上*/
       }
 
       #topnav a {
@@ -47,6 +50,10 @@
       color: white;
       }
 
+      #room{
+        padding-top: :20px;
+      }
+
       .sticky {
       position: fixed;
       top: 0;
@@ -60,6 +67,16 @@
       background-size: 100% auto;
       height: 150px;
       }
+
+      .rainbowBorder{
+      background-image: url(https://i.imgur.com/yaG70Q1.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 50px;
+      width: 100%;
+      }
+
 
       }
     </style>
@@ -90,7 +107,7 @@
     </form>
   </div>
 
-  <script>
+  <!--script>
   window.onscroll = function() {myFunction()};
 
   var topnav = document.getElementById("topnav");
@@ -103,16 +120,17 @@
       topnav.classList.remove("sticky");
     }
   }
-  </script>
+</script-->
 <!-- Header -->
 <!--header class="w3-display-container w3-content" style="max-width:1500px;"-->
   <!--img class="w3-image" src="{% static "JTbackground.jpg" %}" alt="The Hotel" style="min-width:1000px" width="1500" height="800">-->
   <div class="searchRecommendation" id="searchRecommendation">
     <div class=" w3-padding col-xs-12 col-sm-6 col-md-6">
+      <br><br><br>
       <div class="LOGO">
       </div>
       <div class="w3-container w3-red">
-        <h2>Find Trip</h2>
+        <h2><strong>Find Trip</strong></h2>
       </div>
       <div class="w3-container w3-white w3-padding-16">
         <form action="{% url "Item:search_travel_data" %}" target="_blank">
@@ -153,8 +171,9 @@
     </div>
 
     <div class=" w3-padding col-xs-12 col-sm-6 col-md-6">
+      <br><br><br>
       <div class="w3-container w3-red">
-        <h2>Hot Search Keywords</h2>
+        <h2><strong>Hot Search Keywords</strong></h2>
       </div>
       <div class="w3-container w3-black w3-padding-16">
       <!--div class="container"-->
@@ -165,7 +184,7 @@
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
           </ol>
-          
+
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item active">
@@ -179,7 +198,7 @@
                   {% endfor %}
               </div>
             </div>
-            
+
             <div class="item">
                 <img src="http://www.allthefeelsphotography.com/wp-content/uploads/2016/07/ktesession_0252.jpg" alt="Chicago" style="width:100%;">
               <div class="carousel-caption">
@@ -219,10 +238,12 @@
   </div>
 <!-- Page content -->
 <div class="w3-content" style="max-width:1532px;">
-
-  <div class="w3-container w3-margin-top" id="rooms">
+  <br>
+  <div class="w3-container w3-margin-top">
+    <br>
+    <div class="rainbowBorder" id="rooms" > </div>
     <hr>
-    <h3>Destination</h3>
+    <h3><strong>Destination</strong></h3>
     <p> We offer the best group travel for you. You Only Live Once! Bon Voyage!</p>
   </div>
 
@@ -308,7 +329,7 @@
   <div class="w3-row-padding" id="about">
     <hr>
     <div class="w3-col l4 m7">
-      <h3>About</h3>
+      <h3><strong>About</strong></h3>
       <h6>Our hotel is one of a kind. It is truely amazing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h6>
     <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
     </div>
@@ -323,14 +344,9 @@
     <div class="w3-third"><i class="fa fa-envelope w3-text-red"></i> Email: mail@mail.com</div>
   </div>
 
-  <div class="w3-panel w3-red w3-leftbar w3-padding-32">
-    <h6><i class="fa fa-info w3-deep-orange w3-padding w3-margin-right"></i> On demand, we can offer playstation, babycall, children care, dog equipment, etc.</h6>
-  </div>
-
-
 
   <div class="w3-container" id="contact">
-    <h2>Contact</h2>
+    <h3><strong>Contact</strong></h3>
     <p>If you have any questions, do not hesitate to ask them.</p>
     <i class="fa fa-map-marker w3-text-red" style="width:30px"></i> Chicago, US<br>
     <i class="fa fa-phone w3-text-red" style="width:30px"></i> Phone: +00 151515<br>
