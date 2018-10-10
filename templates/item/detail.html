@@ -1,15 +1,20 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
-<head>
-  <title>YOLO Travel</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <head>
+    <title>YOLO Travel</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/icon" href="{% static "favicon.ico" %}"/>
+    <link rel="shortcut icon" type="image/icon" href="{% static "favicon.ico" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <style>
       p {
           /* border-left: 6px solid plum; */
@@ -25,46 +30,191 @@
           padding: 15px;
       }
       a {
-          color:purple;
+          color:#002080;
+          text-decoration:underline;
       }
+
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 90%;
+          margin: 50px;
+      }
+
+
+      table#t01 {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 85%;
+      }
+
+      table#t02{
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 85%;
+      }
+
+      table#t03{
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 90%;
+      }
+
+      td{
+          border: 2px solid;
+          border-color: #dddddd;
+          text-align: center;
+          padding: 8px;
+          color: black;
+      }
+
+      td#t01{
+          border: 2px solid #ffe6ff;
+          text-align: center;
+          padding: 8px;
+      }
+
+      td#t02{
+          border: 2px solid #ccdcff;
+          text-align: center;
+          padding: 8px;
+      }
+
+      td#t03{
+          border: 2px solid #ffe6ff;
+          background-color: #ccdcff;
+          text-align: center;
+          padding: 15px;
+      }
+
+      th {
+          border: 2px;
+      }
+
+      tr#t01:nth-child(even) {
+          background-color: #ccdcff;
+      }
+
+      tr#t03:nth-child(even){
+          background-color: #ffe6ff;
+      }
+      tr#t03:nth-child(odd){
+      }
+
+      .scheduleRecommendation, .similar {
+        text-align: center;
+      }
+
+      .cloud{
+        background-image: url(http://www.onlygfx.com/wp-content/uploads/2016/10/watercolor-cloud-1.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 150px;
+        font-family:monospace;
+      }
+
+      body{
+      margin:0px;
+      padding:0px;
+      background-image: url(http://i.imgur.com/5YSfyQA.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      }
+
 
   </style>
 </head>
 <body>
-    <a href="{{ travel_date.link }}"><h3 align="center"><strong>{{ data.title }}</strong></h3></a><br>
+  <br>
+  <table>
+      <tr>
+        <td>行程名稱</td>
+        <td>{{ data.title }}</td>
+      </tr>
+      <tr>
+        <td>行程網址</td>
+        <td><a href="{{ travel_date.link }}">{{ travel_date.link }}</a></td>
+      </tr>
+      <tr>
+        <td>行程價錢</td>
+        <td>
+          {% for travel in travel_dates %}
+            NT${{travel_date.price}}
+          {% endfor %}
+        </td>
+      </tr>
+      <td>出發日期</td>
+        <td>
+          {% for travel in travel_dates %}
+            <a href="{{ travel.link }}"> {{ travel.departure_date|date:"m/d/Y" }} </a>
+          {% endfor %}
+        </td>
+  </table>
 
     <br>
-    {% for key, value in detail.items %}
-        {% if key != 'keywords' %}
-            <p1>{{ key }}</p1><p>{{ value }}</p>
-        {% endif %}
-        {% if key == 'keywords' %}
-            <p2>{{ key }}</p2>
+    <br>
+
+
+
+    <div class="scheduleRecommendation" id="middleBackground">
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="cloud">
+        <br>
+        <br>
+        <h2 align="center">Schedule</h2></div>
+        <table id='t01'>
+        {% for key, value in detail.items %}
+          {% if key != 'keywords' %}
+            <tr id='t01'>
+              <td id='t01'><strong>{{ key }}</strong></td>
+            </tr>
+            <tr id='t01'>
+              <td id='t01'>{{ value }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+        </table>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        {% for key, value in detail.items %}
+          {% if key == 'keywords' %}
+          <div class="cloud">
+          <br>
+          <br>
+            <h2 align="center">{{ key }}</h2></div>
+            <table id='t02'>
+            <td id='t02'>
             {% for item in value %}
                 <ul style="list-style-type:disc">
                     <li>{{ item }}</li>
                 </ul>
             {% endfor %}
-        {% endif %}
-    {% endfor %}
-
-    <div>
-    <h1>相似行程</h1>
-        {% for item in similar_data %}
-            {% if item.id != data.id %}
-            <div>
-                <a href="{{ item.link }}"> <p>{{ item.title }}</p></a>
-            </div>
-            {% endif %}
+          {% endif %}
         {% endfor %}
+      </td></table>
+      </div>
     </div>
 
-    <div>
+    <div class="similar">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="cloud">
+        <br>
+        <br>
+        <h2>相似行程</h2></div>
+        <table id='t03'>
+          {% for item in similar_data %}
+              {% if item.id != data.id %}
+                <tr id='t03'>
+                  <td id='t03'><a href="{{ item.link }}"> {{ item.title }}</a></td>
+                </tr>
+              {% endif %}
+          {% endfor %}
 
-        <h5>出發日期</h5>
-        {% for travel in travel_dates %}
-            <a href="{{ travel.link }}"> {{ travel.departure_date|date:"m/d/Y" }} </a>
-        {% endfor %}
+              </table>
+      </div>
     </div>
 </body>
 </html>

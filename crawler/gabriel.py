@@ -50,7 +50,7 @@ class Gabriel(object):
             for item in keyword:
                 if(item.text != ''):
                     key.append(item.text)
-                    detail_dic['keywords'] = key
+                    detail_dic['Keywords'] = key
             self.data_dic['detail'] = detail_dic
             self.items.append(self.data_dic)
             self.resetDataDic()

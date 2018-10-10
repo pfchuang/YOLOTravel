@@ -47,7 +47,7 @@ class Cola(object):
                     for word in keyword:
                         if(word != ''):
                             key.append(word.replace('\n', ''))
-                            detail_dic['keywords'] = key
+                            detail_dic['Keywords'] = key
                     browser.back()
                     self.data_dic['detail'].append(detail_dic)
             for item in html.select("[class='GridItem']"):
