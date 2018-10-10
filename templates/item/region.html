@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="image/icon" href="{% static "favicon.ico" %}"/>
     <style>
         .regionName {
-            background-image: url(https://i.imgur.com/zOidzrZ.png);
+            background-image: url({% static "airplaneheart.png" %});
             background-position: 53%;
             background-repeat: no-repeat;
             background-size: contain;
@@ -30,10 +30,14 @@
         body{
             margin:0px;
             padding:0px;
-            background-image: url(http://pic1.win4000.com/wallpaper/6/5317e63646b1e.jpg);
+            background-image: url({% static "regionSKY.jpg" %});
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
+        }
+
+        .pagination{
+            padding: 50px;
         }
     </style>
 </head>
