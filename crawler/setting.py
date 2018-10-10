@@ -4,7 +4,6 @@ from pathlib import Path
 class Setting:
     def getChromeOptions(self):
         chrome_options_headless = webdriver.ChromeOptions()
-        chrome_options_headless.add_argument('--window-size=1900,1000')
         chrome_options_headless.add_argument('--headless')
         chrome_options_headless.add_argument('--disable-gpu')
         return chrome_options_headless
