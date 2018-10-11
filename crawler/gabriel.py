@@ -64,7 +64,7 @@ class Gabriel(object):
         try:
             browser.find_element_by_xpath("//a[contains(text(),'»»')]").click()
             soup = BeautifulSoup(browser.page_source, 'lxml')
-            pageNum = int(soup.selecpage_sourcet("[class='pagination']")[0].find_all('a')[-1].text)
+            pageNum = int(soup.select("[class='pagination']")[0].find_all('a')[-1].text)
             browser.find_element_by_xpath("//a[contains(text(),'««')]").click()
             time.sleep(2)
         except IndexError:

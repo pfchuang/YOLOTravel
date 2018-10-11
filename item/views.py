@@ -56,7 +56,7 @@ def search_result(request):
     except EmptyPage:
         contacts = paginator.page(paginator.num_pages)
     travel_dates = Travel_Date.objects.filter(itinerary__in=contacts)
-    return render(request, 'item/region.html', {'datas':datas, 'contacts': contacts, 'travel_dates': travel_dates})
+    return render(request, 'item/region.html', {'datas':datas, 'contacts': contacts, 'travel_dates': travel_dates, 'region': region})
 
 def data_detail(request, id):
     data = Itinerary.objects.get(id = id)

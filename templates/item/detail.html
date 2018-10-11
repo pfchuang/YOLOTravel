@@ -209,7 +209,7 @@
           {% for item in similar_data %}
               {% if item.id != data.id %}
                 <tr id='t03'>
-                  <td id='t03'><a href="{{ item.link }}"> {{ item.title }}</a></td>
+                  <td id='t03'><a href="{{ item.get_travel_detail }}"> {{ item.title }}</a></td>
                 </tr>
               {% endif %}
           {% endfor %}
