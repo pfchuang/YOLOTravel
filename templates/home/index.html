@@ -22,6 +22,15 @@
       font-family: Arial, Helvetica, sans-serif;
       }
 
+      body{
+      margin:0px;
+      padding:0px;
+      background-image: url({% static "homepageSKY.jpg" %});
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      }
+
       #topnav {
       overflow: hidden;
       background-color: #333;
@@ -50,8 +59,8 @@
       color: white;
       }
 
-      #room{
-        padding-top: :20px;
+      #searchRecommendation{
+        top:20px;
       }
 
       .sticky {
@@ -61,21 +70,22 @@
       }
 
       .LOGO {
-      background-image: url({% static "JTbackground.jpg" %});
+      background-image: url({% static "yoloborder.PNG" %});
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 100% auto;
+      background-size: contain;
       height: 150px;
       }
 
-      .rainbowBorder{
-      background-image: url(https://i.imgur.com/yaG70Q1.png);
+      .YOLOBorder{
+      background-image: url({% static "yolologo_s.PNG" %});
       background-position: center;
-      background-repeat: no-repeat;
+      background-repeat: repeat-x;
       background-size: contain;
-      height: 50px;
+      height: 150px;
       width: 100%;
       }
+
 
 
       }
@@ -127,9 +137,9 @@
   <div class="searchRecommendation" id="searchRecommendation">
     <div class=" w3-padding col-xs-12 col-sm-6 col-md-6">
       <br><br><br>
-      <div class="LOGO">
+      <div class="LOGO" id="logo">
       </div>
-      <div class="w3-container w3-red">
+      <div class="w3-container w3-pink">
         <h2><strong>Find Trip</strong></h2>
       </div>
       <div class="w3-container w3-white w3-padding-16">
@@ -172,7 +182,7 @@
 
     <div class=" w3-padding col-xs-12 col-sm-6 col-md-6">
       <br><br><br>
-      <div class="w3-container w3-red">
+      <div class="w3-container w3-pink">
         <h2><strong>Hot Search Keywords</strong></h2>
       </div>
       <div class="w3-container w3-black w3-padding-16">
@@ -241,8 +251,7 @@
   <br>
   <div class="w3-container w3-margin-top">
     <br>
-    <div class="rainbowBorder" id="rooms" > </div>
-    <hr>
+    <div class="YOLOBorder" id="rooms" > </div>
     <h3><strong>Destination</strong></h3>
     <p> We offer the best group travel for you. You Only Live Once! Bon Voyage!</p>
   </div>
