@@ -80,9 +80,9 @@ def data_detail(request, id):
 def keyword_result(request):
     datas=None
     contacts = None
-    search = request.GET.get("KeyWords")
+    search = request.GET.get("KeyWords").split(' ')
     keyWords = reduce(operator.or_, (Q(title__icontains=x) for x in search))
-    datas = Itinerary.objects.filter(Q(keyWords))
+    datas = Itinerary.objects.filter(Q(keyWords)).order_by('id')
     paginator = Paginator(datas, 25) 
     page = request.GET.get('page')
     try:
