@@ -86,7 +86,21 @@
       width: 100%;
       }
 
+      .keyword_button{
+        border-radius: 70%;
+        padding: 13px;
+        font-size: 16px;
+        background-color: transparent;
+        color: paleturquoise; 
+        border: 2px solid #2ae0f8;
+        margin: 70px 40px 70px 40px;
+        font-family:Microsoft JhengHei;
+      }
 
+      .keyword_button:hover{
+        background-color: #35fcf2;
+        color: white;
+      }
 
       }
     </style>
@@ -200,10 +214,10 @@
             <div class="item active">
               <img src="https://media.timeout.com/images/100541963/image.jpg" alt="Los Angeles" style="width:100%;">
                 <div class="carousel-caption">
-                  <h3>10月</h3>
+                 <h2 class='sticky-top'>10月</h2>
                   {% for top_word in top_words %}
                     {% if top_word.month == 10 %}
-                    <a type="button" href="region/search/keyword/?KeyWords={{ top_word.word }}" class="btn btn-outline-info" name="KeyWords">{{ top_word.word }}</a>
+                    <a class='keyword_button' type="button" href="region/search/keyword/?KeyWords={{ top_word.word }}" name="KeyWords">{{ top_word.word }}</a>
                     {% endif %}
                   {% endfor %}
               </div>
@@ -215,7 +229,7 @@
                 <h3>11月</h3>
                   {% for top_word in top_words %}
                     {% if top_word.month == 11 %}
-                    <a type="button" href="region/search/keyword/?KeyWords={{ top_word.word }}" class="btn btn-outline-info" name="KeyWords">{{ top_word.word }}</a>
+                    <a type="button" href="region/search/keyword/?KeyWords={{ top_word.word }}" class="keyword_button" name="KeyWords">{{ top_word.word }}</a>
                     {% endif %}
                   {% endfor %}
               </div>
@@ -226,7 +240,7 @@
                 <h3>12月</h3>
                   {% for top_word in top_words %}
                     {% if top_word.month == 12 %}
-                    <a type="button" href="region/search/keyword/?KeyWords={{ top_word.word }}" class="btn btn-outline-info">{{ top_word.word }}</a>
+                    <a type="button" href="region/search/keyword/?KeyWords={{ top_word.word }}" class="keyword_button">{{ top_word.word }}</a>
                     {% endif %}
                   {% endfor %}
               </div>

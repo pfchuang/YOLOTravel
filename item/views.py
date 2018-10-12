@@ -47,7 +47,7 @@ def search_result(request):
     datas = Itinerary.objects.filter(Q(region__contains = region)&
                                         Q(travel_date__departure_date__range=(startDate, endDate))&
                                         Q(keyWords)).order_by('-id').distinct()
-    paginator = Paginator(datas, 25) 
+    paginator = Paginator(datas, 20) 
     page = request.GET.get('page')
     try:
         contacts = paginator.page(page)
@@ -83,7 +83,7 @@ def keyword_result(request):
     search = request.GET.get("KeyWords").split(' ')
     keyWords = reduce(operator.or_, (Q(title__icontains=x) for x in search))
     datas = Itinerary.objects.filter(Q(keyWords)).order_by('id')
-    paginator = Paginator(datas, 25) 
+    paginator = Paginator(datas, 20) 
     page = request.GET.get('page')
     try:
         contacts = paginator.page(page)
