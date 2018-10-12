@@ -63,12 +63,6 @@
         top:20px;
       }
 
-      .sticky {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      }
-
       .LOGO {
       background-image: url({% static "yoloborder.PNG" %});
       background-repeat: no-repeat;
@@ -87,14 +81,14 @@
       }
 
       .keyword_button{
-        border-radius: 70%;
-        padding: 13px;
-        font-size: 16px;
-        background-color: transparent;
-        color: paleturquoise; 
-        border: 2px solid #2ae0f8;
-        margin: 70px 40px 70px 40px;
-        font-family:Microsoft JhengHei;
+      border-radius: 70%;
+      padding: 13px;
+      font-size: 16px;
+      background-color: transparent;
+      color: paleturquoise;
+      border: 2px solid #2ae0f8;
+      margin: 70px 40px 70px 40px;
+      font-family:Microsoft JhengHei;
       }
 
       .keyword_button:hover{
@@ -108,7 +102,7 @@
   </head>
 
 
-  <body class="w3-light-grey">
+  <body>
 
 <!-- Navigation Bar -->
   <!--<div class="w3-bar w3-white w3-large">
@@ -118,14 +112,14 @@
   <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>-->
 
   <div id="topnav">
-    <a class="navbar-brand" href="#"><img src="{% static "yolotitle.PNG" %}"  width="110" height="40" align="center" valign="center"></a>
-    <a class="active" href="#searchRecommendation">Home</a>
+    <a class="navbar-brand" href="#"><img src="{% static "yoloicon.png" %}"  width="110" height="40" align="center" valign="center"></a>
+    <a href="#searchRecommendation">Home</a>
     <a href="#rooms">Destination</a></li>
     <a href="#about">About</a></li>
     <a href="#contact">Contact</a></li>
     <form class="navbar-form navbar-right" action="{% url "Item:keyword_search" %}" target="_blank">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Search" name="KeyWords">
+        <input type="text" class="form-control" placeholder="Search keywords..." name="KeyWords">
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>

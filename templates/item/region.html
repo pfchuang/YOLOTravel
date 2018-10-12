@@ -27,6 +27,21 @@
             padding-bottom: 5px;
         }
 
+        #topnav {
+        overflow: hidden;
+        width: 100%;
+        position:relative;; /*固定位置定位*/
+        top:0; /*距離上方 0 像素*/
+        z-index:1; /*重疊時會在其他元素之上*/
+        }
+
+        #topnav a {
+        float: left;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        }
+
         body{
             margin:0px;
             padding:0px;
@@ -41,10 +56,28 @@
             padding-right: 10px;
         }
 
+        .box{padding: 15px ;}
+        .span1{width: 200px;padding-right: 10px;position: relative;float: right;}
+        .span2{float: right;padding-left: 10px;}
+        .form-control{position: absolute;top: 0;}
+
+
     </style>
 </head>
 
 <body>
+  <div id="topnav">
+    <a class="navbar-brand" href="#"><img src="{% static "yoloicon.png" %}"  width="110" height="40" align="center" valign="center"></a>
+    <form class="box" action="{% url "Item:keyword_search" %}" target="_blank">
+      <span class="span2">
+          <button type="submit" class="btn btn-default" height="20px" font= "normal 18px/20px">Submit</button>
+      </span>
+      <span class="span1">
+          <input type="text" class="form-control" placeholder="Search keywords..." name="KeyWords" style="height: 40px;width: 200px;">
+      </span>
+    </form>
+  </div>
+
     <div class="container">
         <br>
         <div class="regionName">
@@ -121,41 +154,40 @@
         {% endfor %}
     </div>
     <div class="container">
-        <ul class="pagination">
-            <span class="current" style="padding-bottom"> Page {{ contacts.number }} of {{ contacts.paginator.num_pages
-                }}. </span>
-            <li class="page-item">
-                {% if contacts.has_previous %}
-                <a class="page-link" href="?page=1" aria-label="first">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">First</span>
-                </a>
+      <ul class="pagination">
+          <span class="current" > Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}. </span>
+          <li class="page-item">
+              {% if contacts.has_previous %}
+              <a class="page-link" href="?page=1" aria-label="first">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">First</span>
+              </a>
 
-            </li>
-            <li class="page-item">
+          </li>
+          <li class="page-item">
 
-                <a class="page-link" href="?page={{ contacts.previous_page_number }}" aria-label="Previous">
-                    <span aria-hidden="true">
-                        <</span> <span class="sr-only">Previous
-                    </span>
-                </a>
-                {% endif %}
-            </li>
+              <a class="page-link" href="?page={{ contacts.previous_page_number }}" aria-label="Previous">
+                  <span aria-hidden="true">
+                      <</span> <span class="sr-only">Previous
+                  </span>
+              </a>
+              {% endif %}
+          </li>
 
-            <li class="page-item">
-                {% if contacts.has_next %}
-                <a class="page-link" href="?page={{ contacts.next_page_number }}" aria-label="Next">
-                    <span aria-hidden="true">></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="?page={{ contacts.paginator.num_pages }}" aria-label="last">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Last</span>
-                </a>
-                {% endif %}
-            </li>
-        </ul>
+          <li class="page-item">
+              {% if contacts.has_next %}
+              <a class="page-link" href="?page={{ contacts.next_page_number }}" aria-label="Next">
+                  <span aria-hidden="true">></span>
+                  <span class="sr-only">Next</span>
+              </a>
+          </li>
+          <li class="page-item">
+              <a class="page-link" href="?page={{ contacts.paginator.num_pages }}" aria-label="last">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Last</span>
+              </a>
+              {% endif %}
+          </li>
+      </ul>
     </div>
 </body>
