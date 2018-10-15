@@ -21,6 +21,7 @@ class Cola(object):
     def crawl(self):
         browser = Setting.settingDriver()
         browser.get(self.url)
+        print(self.url)
         # res = requests.get(self.url)
         html = BeautifulSoup(browser.page_source, 'lxml')
 
@@ -29,6 +30,7 @@ class Cola(object):
         datas = []
 
         for i in range(len(html.select("[name='ColaPager$ddlPageNo']")[0].find_all('option'))):
+            self.count+=1
             html = BeautifulSoup(browser.page_source, 'lxml')
             for data in html.select("[class='Grid']"):
                 for item in data.select("[class='TourName']"):
@@ -38,17 +40,11 @@ class Cola(object):
                     self.data_dic['link'].append(tmp_link)
                     browser.get(tmp_link)
                     detail = browser.find_elements_by_xpath("//td[@style='background-color: #D1E6FE; color: blue']")
-                    keyword = (browser.find_element_by_tag_name("routecontent").find_element_by_tag_name("blockquote").text.split("\n\n"))
-                    key = []
                     day_count = 0
                     detail_dic = {}
                     for detail_data in detail:
                         day_count += 1
                         detail_dic[("DAY " + str(day_count))] = detail_data.text
-                    for word in keyword:
-                        if(word != ''):
-                            key.append(word.replace('\n', ''))
-                            detail_dic['Keywords'] = key
                     browser.back()
                     self.data_dic['detail'].append(detail_dic)
             for item in html.select("[class='GridItem']"):
@@ -57,6 +53,7 @@ class Cola(object):
 
 
             browser.find_element_by_xpath("//input[@id='ColaPager_cmdNextPage']").click()
+            print('Preparing {} data from {}'.format(self.count, self.code))
         browser.quit()
         # pprint(datas)
         count_seat=-1
@@ -80,6 +77,7 @@ class Cola(object):
                     self.data_dic['status'].append(tmp_string)
                 else:
                     self.data_dic['status'].append(datas[i])
+            
         cola = Deposit(self.code, self.data_dic)
         cola.run()
 
