@@ -21,8 +21,6 @@ class Cola(object):
     def crawl(self):
         browser = Setting.settingDriver()
         browser.get(self.url)
-        print(self.url)
-        # res = requests.get(self.url)
         html = BeautifulSoup(browser.page_source, 'lxml')
 
         available = []
@@ -34,7 +32,6 @@ class Cola(object):
             html = BeautifulSoup(browser.page_source, 'lxml')
             for data in html.select("[class='Grid']"):
                 for item in data.select("[class='TourName']"):
-                    # pprint(item.text)
                     self.data_dic['title'].append(item.text)
                     tmp_link = "https://www.colatour.com.tw"+str(item['href'])
                     self.data_dic['link'].append(tmp_link)
@@ -55,7 +52,6 @@ class Cola(object):
             browser.find_element_by_xpath("//input[@id='ColaPager_cmdNextPage']").click()
             print('Preparing {} data from {}'.format(self.count, self.code))
         browser.quit()
-        # pprint(datas)
         count_seat=-1
         for i in range(len(datas)):
             if i%11==2:

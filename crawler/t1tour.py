@@ -12,7 +12,6 @@ class T1tour(object):
     def __init__(self, tag_code):
         self.url = 'http://www.t1tour.com.tw/tour?country=' + tag_code + '&sdate=' + now + '&edate=' + halfYearByNow
         self.code = tag_code
-        # self.count = 0
         self.data_dic = {'title':[], 'price':[], 'departure_date':[], 'link':[], 'status':[], 'date_price': [], 'detail': []}
 
     def getPage(self):

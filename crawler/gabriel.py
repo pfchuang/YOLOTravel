@@ -73,7 +73,6 @@ class Gabriel(object):
         except:
             soup = BeautifulSoup(browser.page_source, 'lxml')
             pageNum = int(soup.select("[class='pagination']")[0].find_all('a')[0].text)
-            # print(pageNum)
 
         soup = BeautifulSoup(browser.page_source, 'lxml')
         if pageNum > 1:

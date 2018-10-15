@@ -58,20 +58,6 @@ class Lion(object):
             
 
     def getDetail(self, link):
-        # res2 = requests.get(link)
-        # soup = BeautifulSoup(res2.text, 'lxml')
-        # try:
-        #     detail = soup.select("[class='clp-subtitle font-16']")
-        #     day_count = 0
-        #     detail_dic = {}
-        #     for item in detail:   
-        #         day_count += 1
-        #         detail_dic[("DAY " + str(day_count))] = item.text
-        #     self.itinerary['detail'] = detail_dic
-        # except:
-        #     no_detail = {"notice":"此項目無行程內容"}
-        #     self.itinerary['detail'] = no_detail
-
         browser = Setting.settingDriver()
         browser.get(link)
         try:
