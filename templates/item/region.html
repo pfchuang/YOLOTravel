@@ -130,7 +130,7 @@
                     {% if data.price != "" %}
                     <h3><b class="badge  badge-success">NT${{data.price}}</b></h3>
                     {% else %}
-                    <h3><b class="badge  badge-success">closed</b></h3>
+                    <h3><b class="badge  badge-success">候補</b></h3>
                     {% endif %}
                     {% for travel_date in travel_dates %}
                     {% if travel_date.itinerary.id == data.id %}
