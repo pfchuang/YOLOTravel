@@ -193,7 +193,29 @@
     <br>
 
 
-
+  {% if not detail.KeyWords %}
+  <div class="scheduleRecommendation">
+    <div class="container">
+    <div class="col-md-12">
+      <div class="cloud">
+      <br>
+      <br>
+      <h2 align="center">Schedule</h2></div>
+      <table id='t01'>
+      {% for key, value in detail.items %}
+        {% if key != 'Keywords' %}
+          <tr id='t01'>
+            <td id='t01'><strong>{{ key }}</strong></td>
+          </tr>
+          <tr id='t01'>
+            <td id='t01'>{{ value }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+      </table>
+    </div>
+    </div>
+    {% else %}
     <div class="scheduleRecommendation">
       <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="cloud">
@@ -233,7 +255,8 @@
       </td></table>
       </div>
     </div>
-
+    {% endif %}
+    
     <div class="similar">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="cloud">

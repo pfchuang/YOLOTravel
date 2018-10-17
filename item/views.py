@@ -60,7 +60,12 @@ def search_result(request):
 
 def data_detail(request, id):
     data = Itinerary.objects.get(id = id)
-    detail = ast.literal_eval(data.detail)
+    try:
+        detail = ast.literal_eval(data.detail)
+    except SyntaxError:
+        pass
+    except ValueError:
+        pass
 
     region = data.region
     clean_title = re.sub("[〈〉～《》▪￭◆．等日無天 A-Za-z0-9「」ｘ『』•【】\x08;\s+\.\!\<>/_,$%^*(+\"\'+——！，\[\]Xx｜。１２３４５６７８９？、~@#￥%……&*（）＋；〜－)®：●♥★™🏆‧-]",
