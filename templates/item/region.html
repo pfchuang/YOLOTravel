@@ -60,6 +60,13 @@
         .span1{width: 200px;padding-right: 10px;position: relative;float: right;}
         .span2{float: right;padding-left: 10px;}
         .form-control{position: absolute;top: 0;}
+	.card-title {
+		overflow: hidden;
+		height: 150px;
+	}
+	.badge-pill {
+		float: left;
+	}
 
 
     </style>
@@ -67,7 +74,7 @@
 
 <body>
   <div id="topnav">
-    <a class="navbar-brand" href="http://54.249.170.145"><img src="{% static "yoloicon.png" %}"  width="110" height="40" align="center" valign="center"></a>
+    <a class="navbar-brand" href="http://54.255.238.209"><img src="{% static "yoloicon.png" %}"  width="110" height="40" align="center" valign="center"></a>
     <form class="box" action="{% url "Item:keyword_search" %}" target="_blank">
       <span class="span2">
           <button type="submit" class="btn btn-default" height="20px" font= "normal 18px/20px">Submit</button>
@@ -122,16 +129,12 @@
                 {% endif %}
             </li>
         </ul>
+        <div class="row">
         {% for data in contacts %}
-        <div class="card-deck">
+	<div class="col-lg-3 col-md-4 col-sm-6">
             <div class="card border-secondary mb-3">
                 <div class="card-body">
                     <h5 class="card-title" style="font-family:Microsoft JhengHei;">{{data.title}}</h5>
-                    {% if data.price != "" %}
-                    <h3><b class="badge  badge-success">NT${{data.price}}</b></h3>
-                    {% else %}
-                    <h3><b class="badge  badge-success">候補</b></h3>
-                    {% endif %}
                     {% for travel_date in travel_dates %}
                     {% if travel_date.itinerary.id == data.id %}
                     <h5>
@@ -142,6 +145,12 @@
                     </h5>
                     {% endif %}
                     {% endfor %}
+                    {% if data.price != "" %}
+                    <h3><b class="badge  badge-success">NT${{data.price}}</b></h3>
+                    {% else %}
+                    <h3><b class="badge  badge-success">候補</b></h3>
+                    {% endif %}
+
                 </div>
 
                 <f class="container">
@@ -150,8 +159,9 @@
                     </a>
                 </f>
             </div>
-        </div>
+	</div>
         {% endfor %}
+        </div>
     </div>
     <div class="container">
       <ul class="pagination">
