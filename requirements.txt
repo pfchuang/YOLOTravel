@@ -1,5 +1,5 @@
 anglerfish==2.5.0
-arrow==0.12.1
+arrow==0.15.1
 beautifulsoup4==4.6.0
 blessed==1.15.0
 bootstrap-admin==0.3.7.1
